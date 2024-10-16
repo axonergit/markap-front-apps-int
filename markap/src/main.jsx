@@ -23,7 +23,7 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <NextUIProvider>
+        <NextUIProvider locale="es-ES">
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={router}></RouterProvider>
             </QueryClientProvider>

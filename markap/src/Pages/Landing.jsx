@@ -1,4 +1,4 @@
-import MyNavbar from "../Navbar.jsx";
+import MyNavbar from "../Components/Navbar.jsx";
 import {Button, ButtonGroup} from "@nextui-org/button";
 
 
