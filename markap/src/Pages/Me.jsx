@@ -1,8 +1,26 @@
 import axiosClient from "../config/axiosClient.js";
-import { useState, useEffect } from "react";
+import {useEffect, useState} from "react";
+import Navbar from "../Components/Navbar.jsx";
+import SideMe from "../Components/SideMe.jsx";
+import MeItem from "../Components/MeItem.jsx";
 
 const Me = () => {
     const [datosUsuario, setDatosUsuario] = useState({});
+
+    const opciones = [{
+        id: 1,
+        titulo: "Mis compras",
+        detalles: "Aqui puedes encontrar un detalle de todas tus compras pasadas."
+    }, {
+        id: 2,
+        titulo: "Mi carrito",
+        detalles: "Aqui puedes encontrar un detalle de los elementos en tu carrito."
+    }, {
+        id: 3,
+        titulo: "Mi cuenta",
+        detalles: "Aqui puedes cambiar detalles de tu cuenta."}
+    ]
+
 
     useEffect(() => {
         const obtenerUsuario = async () => {
@@ -18,10 +36,16 @@ const Me = () => {
     }, []); // [] para ejecutar el efecto solo cuando el componente se monta
 
     return (
-        <div>
-            <h1>Hola, estamos en el perfil del usuario</h1>
-            <pre>{JSON.stringify(datosUsuario, null, 2)}</pre>
-        </div>
+        <>
+            <Navbar/>
+            <div className="flex">
+                <SideMe/>
+                <div
+                    className="flex-grow flex  h-screen bg-white shadow p-4">
+
+                </div>
+            </div>
+        </>
     );
 };
 

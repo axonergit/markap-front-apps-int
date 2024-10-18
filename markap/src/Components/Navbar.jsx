@@ -72,11 +72,11 @@ const MyNavbar = () => {
                 </NavbarContent>
                 <NavbarContent justify="end">
                     <NavbarItem className="hidden lg:flex">
-                        <Link to="/login">Login</Link>
+                        <Link to="/login">Iniciar sesion</Link>
                     </NavbarItem>
                     <NavbarItem>
                         <Button as={Link} to="/register" color="primary" variant="flat">
-                            Sign Up
+                            Registrarse
                         </Button>
                     </NavbarItem>
                 </NavbarContent>
