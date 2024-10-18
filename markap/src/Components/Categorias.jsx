@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import Glide from "@glidejs/glide";
-import shrek from "../assets/shrek.jpg"; 
+{/*<!-- import shrek from "../assets/shrek.jpg"; --> */} import shrek from "../assets/shrek.jpg";
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../config/axiosClient";
+import Card from "../Components/Card.jsx";
 
-export default function Destacados() {
+const Categorias = ({ data }) =>  {
   const sliderRef = useRef(null); // Use ref to target the slider
 
   useEffect(() => {
@@ -37,16 +38,6 @@ export default function Destacados() {
     }
   }, []);
 
-  const { isLoading, error, data } = useQuery({   //Usamos useQuery con la ruta del backend (tomamos los destacados)
-    queryKey: ['Destacados'],
-    queryFn: () =>
-      axiosClient.get("/productos/destacados").then((res) => res.data),
-  });
-
-  if (isLoading) return 'Loading...';
-
-  console.log(data)
-
   return (
     <>
       {/*<!-- Component: Card Carousel --> */}
@@ -54,9 +45,12 @@ export default function Destacados() {
         {/*    <!-- Slides --> */}
         <div className="overflow-hidden" data-glide-el="track">
           <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
-            {data.map((producto) => (
-              <li key={producto.id}>{producto.descripcion} {producto.precio} <img src={producto.imagen} height="200000" alt=""/></li>
-            ))}
+            {data.map((categoria) => (
+               <li key={categoria.id} className="glide__slide">
+               <Card title={categoria.nombre_categoria} image={shrek}>
+               </Card>
+             </li>
+           ))}
           </ul>
         </div>
         {/*    <!-- Controls --> */}
@@ -109,6 +103,8 @@ export default function Destacados() {
         </div>
       </div>
       {/*<!-- End Card Carousel --> */}
-    </>
-  );
+    </>
+  );
 }
+
+export default Categorias;
