@@ -1,59 +1,46 @@
 import MyNavbar from "../Components/Navbar.jsx";
-import {Button, ButtonGroup} from "@nextui-org/button";
+import { Button, ButtonGroup } from "@nextui-org/button";
 import axiosClient from "../config/axiosClient.js";
-import {useState} from "react";
-import Card from "../Components/Card.jsx";
-import Destacados from "../Components/Destacados.jsx";
-import Categorias from "../Components/Categorias.jsx";
-import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-
+import IndividualCard from "../Components/individualCard.jsx";
+import Destacados from "../Components/Destacados.jsx";
+import React from 'react';
 
 const Landing = () => {
     const token = localStorage.getItem("authToken");
 
-    const { isLoading, error, data } = useQuery({   //Usamos useQuery con la ruta del backend (tomamos los destacados)
+    const { isLoading, error, data } = useQuery({   
         queryKey: ['Categorias'],
         queryFn: () =>
           axiosClient.get("http://localhost:3000/categorias").then((res) => res.data),
       });
     
-      if (isLoading) return 'Loading...';
-    
-      console.log(data)
+    if (isLoading) return 'Loading...';
+    if (error) return 'Error cargando categorías';
 
     return (
         <>
-        <MyNavbar></MyNavbar>
-            <div className="w-screen h-screen bg-gradient-to-l from-blue-950 to-blue-500 flex justify-center items-center">
-                <Destacados>
-            
-                </Destacados>
+            <MyNavbar />
+            {/* Div para productos destacados */}
+            <div className="w-screen h-1/3 bg-gradient-to-l from-blue-950 to-blue-500 flex justify-center items-center">
+                <Destacados />
             </div>
 
-            <div className="w-screen h-screen bg-gradient-to-l from-black to-red-800 flex justify-center items-center">
+            {/* Sección de las categorías */}
+            <div className="w-screen h-screen bg-gradient-to-l from-amber-400 to-red-300">
+                {data.map((categoria) => (
+                    <li>
 
-                <Categorias data = {data}>
+                        <IndividualCard key={categoria.id} data={categoria} />
 
-                
-
-                </Categorias>
-
+                    </li>
+                    
+                ))}
             </div>
 
-            <div className="w-screen h-screen bg-gradient-to-l from-black to-red-800 flex justify-center items-center">
-
-
-
-
-
-            </div>
-
-            
-
-            {token ? <h1>Logeado gil</h1> : <h1>no logeado gil</h1>} { /*<!--esto junto a const token nos sirven para renderizar el historial de productos visitados del usuario cuando se loguea -->*/}
+            {token ? <h1>Logeado gil</h1> : <h1>No logeado gil</h1>} 
         </>
     )
 }
 
-export default Landing
+export default Landing;
