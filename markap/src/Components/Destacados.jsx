@@ -50,12 +50,12 @@ export default function Destacados() {
   return (
     <>
       {/*<!-- Component: Card Carousel --> */}
-      <div ref={sliderRef} className="glide-06 relative w-1/2 h-1/3 overflow-hidden rounded bg-white shadow-xl shadow-slate-200">
+      <div ref={sliderRef} className="glide-06 relative w-5/6 h-1/4 sm:w-3/6 sm:h-1/8  overflow-hidden rounded bg-white shadow-xl shadow-slate-200 m-16">
         {/*    <!-- Slides --> */}
         <div className="overflow-hidden" data-glide-el="track">
           <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
             {data.map((producto) => (
-              <li key={producto.id}>{producto.descripcion} {producto.precio} <img src={producto.imagen} height="200000" alt=""/></li>
+              <li key={producto.id}>{producto.descripcion} {producto.precio} <img src={producto.imagen} height="200" alt=""/></li>
             ))}
           </ul>
         </div>

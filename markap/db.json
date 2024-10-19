@@ -1,27 +1,110 @@
 {
-    "categorias": [
-      {"id": 1, "nombre_categoria": "Literatura", "imagen": "literatura.jpg"},
-      {"id": 2, "nombre_categoria": "Ciencia Ficción", "imagen": "ciencia_ficcion.jpg"},
-      {"id": 3, "nombre_categoria": "Historia", "imagen": "historia.jpg"},
-      {"id": 4, "nombre_categoria": "Biografías", "imagen": "biografias.jpg"},
-      {"id": 5, "nombre_categoria": "Cocina", "imagen": "cocina.jpg"},
-      {"id": 6, "nombre_categoria": "Deporte", "imagen": "deporte.jpg"},
-      {"id": 7, "nombre_categoria": "Música", "imagen": "musica.jpg"},
-      {"id": 8, "nombre_categoria": "Viajes", "imagen": "viajes.jpg"},
-      {"id": 9, "nombre_categoria": "Arte", "imagen": "arte.jpg"},
-      {"id": 10, "nombre_categoria": "Fotografía", "imagen": "fotografia.jpg"},
-      {"id": 11, "nombre_categoria": "Tecnología", "imagen": "tecnologia.jpg"},
-      {"id": 12, "nombre_categoria": "Moda", "imagen": "moda.jpg"},
-      {"id": 13, "nombre_categoria": "Negocios", "imagen": "negocios.jpg"},
-      {"id": 14, "nombre_categoria": "Educación", "imagen": "educacion.jpg"},
-      {"id": 15, "nombre_categoria": "Salud", "imagen": "salud.jpg"},
-      {"id": 16, "nombre_categoria": "Psicología", "imagen": "psicologia.jpg"},
-      {"id": 17, "nombre_categoria": "Autoayuda", "imagen": "autoayuda.jpg"},
-      {"id": 18, "nombre_categoria": "Economía", "imagen": "economia.jpg"},
-      {"id": 19, "nombre_categoria": "Ciencia", "imagen": "ciencia.jpg"},
-      {"id": 20, "nombre_categoria": "Política", "imagen": "politica.jpg"}
-    ],
-
-    "productos": [{"id": 1, "nombre": "Alejo"}]
-  }
-  
+  "categorias": [
+    {
+      "id": 1,
+      "nombre_categoria": "Literatura",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 2,
+      "nombre_categoria": "Ciencia Ficción",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 3,
+      "nombre_categoria": "Historia",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 4,
+      "nombre_categoria": "Biografías",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 5,
+      "nombre_categoria": "Cocina",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 6,
+      "nombre_categoria": "Deporte",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 7,
+      "nombre_categoria": "Música",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 8,
+      "nombre_categoria": "Viajes",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 9,
+      "nombre_categoria": "Arte",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 10,
+      "nombre_categoria": "Fotografía",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 11,
+      "nombre_categoria": "Tecnología",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 12,
+      "nombre_categoria": "Moda",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 13,
+      "nombre_categoria": "Negocios",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 14,
+      "nombre_categoria": "Educación",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 15,
+      "nombre_categoria": "Salud",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 16,
+      "nombre_categoria": "Psicología",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 17,
+      "nombre_categoria": "Autoayuda",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 18,
+      "nombre_categoria": "Economía",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 19,
+      "nombre_categoria": "Ciencia",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    },
+    {
+      "id": 20,
+      "nombre_categoria": "Política",
+      "imagen": "C:/Users/fulan/OneDrive/Escritorio/Proyecto API Ecommerce FrontEnd/markap-front-apps-int/markap/src/assets/shrek.jpg"
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Alejo"
+    }
+  ]
+}
