@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import IndividualCard from "../Components/individualCard.jsx";
 import Destacados from "../Components/Destacados.jsx";
 import React from 'react';
+import Footer from "../Components/Footer.jsx";
 
 const Landing = () => {
     const token = localStorage.getItem("authToken");
@@ -27,15 +28,21 @@ const Landing = () => {
             </div>
 
             {/* Sección de las categorías */}
-            <div className="w-screen h-screen bg-gradient-to-l from-amber-400 to-red-300">
+            <div className="w-screen h-screen bg-gradient-to-l from-amber-400 to-red-300 flex flex-wrap justify-center space-x-4 space-y-4">
                 {data.map((categoria) => (
-                    <li>
+                    <ul>
 
-                        <IndividualCard key={categoria.id} data={categoria} />
+                        <IndividualCard data={categoria} />
 
-                    </li>
+                    </ul>
                     
                 ))}
+            </div>
+
+            <div>
+
+                <Footer></Footer>
+
             </div>
 
             {token ? <h1>Logeado gil</h1> : <h1>No logeado gil</h1>} 
