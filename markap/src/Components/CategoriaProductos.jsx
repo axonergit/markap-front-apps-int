@@ -6,20 +6,12 @@ const CategoriaProductos = () => {
   // Captura el ID de la categoría desde la URL
   const { id } = useParams();
 
-    // Convertir id a número y verificar si es un número válido
-
-
   // Realiza la consulta para obtener los datos de la categoría
   const { isLoading, error, data } = useQuery({
     queryKey: ['categoria'],
     queryFn: () =>
       axiosClient.get("/productos/categoria/" + id).then((res) => res.data),
   });
-
-
-
-
-
 
   // Muestra la UI para los diferentes estados
   if (isLoading) return <p>Cargando productos de la categoría...</p>;

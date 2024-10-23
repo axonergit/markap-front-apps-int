@@ -14,6 +14,7 @@ const Categorias = () => {
     if (error) return 'Error cargando categorías';
 
     console.log(data)
+   
     return (
         <div className="w-screen h-screen bg-gradient-to-l from-amber-400 to-red-300 flex items-center justify-center">
             <ul className="w-11/12 max-w-6xl h-full grid gap-6 p-6 md:grid-cols-2 lg:grid-cols-4">
@@ -32,7 +33,9 @@ const Categorias = () => {
             </ul>
         </div>
     )
-
 }
 
 export default Categorias;
+
+ {/*  */}
+

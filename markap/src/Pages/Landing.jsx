@@ -8,7 +8,7 @@ const Landing = () => {
         <>
             <MyNavbar/>
             {/* Div para productos destacados */}
-            <div className="w-screen h-1/3 bg-gradient-to-l from-blue-950 to-blue-500 flex justify-center items-center">
+            <div className="w-full h-full md:h-1/2 relative bg-gradient-to-l from-blue-950 to-blue-500 flex justify-center items-center ">
                 <Destacados/>
             </div>
 
