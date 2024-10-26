@@ -23,7 +23,7 @@ const Categorias = () => {
                         className="bg-white rounded-lg shadow-md text-center p-4 flex items-center justify-center hover:bg-gray-100 transition-colors duration-300"
                         key={categoria.id}
                     >
-                        <Link to={`/categorias/${categoria.id}`} className="w-full h-full flex items-center justify-center">
+                        <Link to={`productos/categoria/${categoria.id}`} className="w-full h-full flex items-center justify-center">
                             <span className="text-2xl font-bold text-gray-800 font-sans">
                                 {categoria.nombreCategoria}
                             </span>
