@@ -11,11 +11,11 @@ export default function Destacados() {
   });
 
   if (isLoading) return 'Loading...';
-  if (error) return 'An error has occurred: ' + error.message;
+  if (error) return 'Error cargando productos destacados';
 
   return (
     <div className="carousel rounded-box p-10 w-full h-full">
-      {data.map((productoDestacado) => (
+      {data?.map((productoDestacado) => (
         <div className="carousel-item flex flex-col items-center w-full h-full p-9" key={productoDestacado.id}>
           <img
             src={productoDestacado.imagen}

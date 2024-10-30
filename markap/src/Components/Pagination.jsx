@@ -1,4 +1,4 @@
-export default function Pagination({ totalItems, itemsPerPage, currentPage, onPageChange,maxVisiblePages, totalPages}) {
+export default function Pagination({ currentPage, onPageChange,maxVisiblePages, totalPages}) {
 
   const handlePageChange = (page) => {
     onPageChange(page); // Actualiza la página actual en `CategoriaProductos`

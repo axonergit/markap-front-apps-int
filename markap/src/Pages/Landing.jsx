@@ -3,9 +3,12 @@ import Destacados from "../Components/Destacados.jsx";
 import Categorias from "../Components/Categorias.jsx";
 import Footer from "../Components/Footer.jsx";
 import PaginationMinimal from "../Components/PaginationMinimal.jsx";
+import VisitadosRecientemente from "../Components/VisitadosRecientemente.jsx";
 
 const Landing = () => {
+
     const token = localStorage.getItem("authToken");
+
     return (
         <>
             <MyNavbar/>
@@ -23,6 +26,11 @@ const Landing = () => {
             
             {token ? <h1>Logeado gil</h1> : <h1>No logeado gil</h1>}
 
+            <div className= "h-96 bg-gradient-to-r from-black to-lime-600 flex justify-center items-center">
+
+            <VisitadosRecientemente></VisitadosRecientemente>
+
+            </div>
             <Footer></Footer>
         </>
     )

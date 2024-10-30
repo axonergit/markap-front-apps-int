@@ -5,6 +5,7 @@ import MyNavbar from "./Navbar.jsx";
 import Stars from "./Stars.jsx";
 import Pagination from "./Pagination.jsx";
 import { useState } from "react";
+import { Link } from "react-router-dom"; 
 
 const CategoriaProductos = () => {
   // Captura el ID de la categoría desde la URL
@@ -33,15 +34,15 @@ const CategoriaProductos = () => {
           <p className="text-lg mb-4">{"Productos de la categoría"}</p>
 
           {data.content && data.content.length > 0 ? (
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-              {data.content.map((producto) => (
-                <li key={producto.id} className="bg-gray-100 p-4 rounded-lg shadow-md h-full">
+            <ul className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+              {data?.content.map((producto) => (
+                <Link key={producto.id} className="bg-gray-100 p-4 rounded-lg shadow-md h-full">
                   <h2 className="text-xl md:text-lg font-bold">{producto.descripcion}</h2>
                   <img src={producto.imagen} className="w-full h-auto object-contain" alt="Producto"></img>
                   <p className="overflow-hidden text-ellipsis">{producto.detalles}</p>
                   <Stars id={producto.id} />
                   <p className="font-bold text-green-500">Precio: ${producto.precio.toFixed(2)}</p>
-                </li>
+                </Link>
               ))}
             </ul>
           ) : (

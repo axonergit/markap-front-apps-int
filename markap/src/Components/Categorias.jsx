@@ -18,7 +18,7 @@ const Categorias = () => {
     return (
         <div className="w-full h-full bg-gradient-to-l from-amber-400 to-red-300 flex items-center justify-center ">
             <ul className="w-11/12 max-w-6xl h-full grid gap-2 p-10 md:grid-cols-2 lg:grid-cols-4">
-                {data.map((categoria) => (
+                {data?.map((categoria) => (
                     <li
                         className="bg-white rounded-lg shadow-md text-center p-4 flex items-center justify-center hover:bg-gray-100 transition-colors duration-300"
                         key={categoria.id}
