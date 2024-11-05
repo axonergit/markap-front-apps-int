@@ -13,5 +13,5 @@ export default {
     extend: {},
   },
   darkMode: "class",
-  plugins: [nextui(),require("daisyui")]
+  plugins: [nextui(),require("daisyui"), require("@tailwindcss/line-clamp")]
 }

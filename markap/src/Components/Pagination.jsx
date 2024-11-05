@@ -1,7 +1,7 @@
-export default function Pagination({ currentPage, onPageChange,maxVisiblePages, totalPages}) {
+export default function Pagination({ currentPage, onPageChange, maxVisiblePages = 10, totalPages }) {
 
   const handlePageChange = (page) => {
-    onPageChange(page); // Actualiza la página actual en `CategoriaProductos`
+    onPageChange(page);
   };
 
   const handleNext = () => {
@@ -12,12 +12,28 @@ export default function Pagination({ currentPage, onPageChange,maxVisiblePages, 
     if (currentPage > 1) handlePageChange(currentPage - 1);
   };
 
-  // Define el número máximo de botones de página visibles
-  let startPage = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
-  let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
+  let startPage, endPage;
+  
+  if (totalPages <= maxVisiblePages) {
+    // Caso donde el total de páginas es menor o igual al máximo visible
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculamos el inicio y fin para más de maxVisiblePages total
+    const maxPagesBeforeCurrentPage = Math.floor(maxVisiblePages / 2);
+    const maxPagesAfterCurrentPage = Math.ceil(maxVisiblePages / 2) - 1;
+    startPage = currentPage - maxPagesBeforeCurrentPage;
+    endPage = currentPage + maxPagesAfterCurrentPage;
 
-  if (endPage - startPage + 1 < maxVisiblePages) {
-    startPage = Math.max(endPage - maxVisiblePages + 1, 1);
+    if (startPage < 1) {
+      // Ajuste si el inicio es menor que 1
+      startPage = 1;
+      endPage = maxVisiblePages;
+    } else if (endPage > totalPages) {
+      // Ajuste si el final es mayor que el total de páginas
+      endPage = totalPages;
+      startPage = totalPages - maxVisiblePages + 1;
+    }
   }
 
   return (
