@@ -107,16 +107,16 @@ const CarritoItems = () => {
                         ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {items.map((item) => (
-                        <div key={item.id} className="card w-96 bg-base-100 shadow-xl">
-                            <figure>
-                                <img src={`data:image/jpeg;base64,${item.product.imagen}`} alt={item.product.descripcion} />
+                        <div key={item.id} className="card w-96 bg-base-100 shadow-xl flex flex-col justify-between">
+                            <figure className="flex-grow">
+                                <img className="h-48 object-contain" src={`data:image/jpeg;base64,${item.product.imagen}`} alt={item.product.descripcion} />
                             </figure>
-                            <div className="card-body">
+                            <div className="card-body flex flex-col justify-between">
                                 <h2 className="card-title">{item.product.descripcion}</h2>
                                 <div className="flex justify-between items-center mb-2">
-                                    <button className="btn btn-sm btn-outline" onClick={() => handleRemoverItem(item.product.id)}>-</button>
+                                    <button className="btn btn-sm btn-outline btn-error" onClick={() => handleRemoverItem(item.product.id)}>-</button>
                                     <span className="text-sm font-bold">{item.amount}</span>
-                                    <button className="btn btn-sm btn-outline" onClick={() => handleAgregarItem(item.product.id)}>+</button>
+                                    <button className="btn btn-sm btn-outline btn-success" onClick={() => handleAgregarItem(item.product.id)}>+</button>
                                 </div>
                                 <p>Precio unitario: ${item.product.precio.toFixed(2)}</p>
                                 <p>Precio total: ${(item.amount * item.product.precio).toFixed(2)}</p>
