@@ -1,7 +1,6 @@
 import {Link, useNavigate} from "react-router-dom"; // Importa Link y useNavigate de React Router
 import {jwtDecode} from "jwt-decode";
 
-
 const MyNavbar = () => {
     const navigate = useNavigate();
 
@@ -28,7 +27,9 @@ const MyNavbar = () => {
         return (
             <div className="navbar bg-base-100">
                 <div className="flex-1">
-                    <a className="btn btn-ghost text-xl">Markap</a>
+                    <Link to="/" className="btn btn-ghost text-xl">
+                        Markap
+                    </Link>
                 </div>
                 <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
@@ -42,7 +43,9 @@ const MyNavbar = () => {
         return (
             <div className="navbar bg-base-100">
                 <div className="flex-1">
-                    <a className="btn btn-ghost text-xl">Markap</a>
+                <Link to="/" className="btn btn-ghost text-xl">
+                    Markap
+                </Link>
                 </div>
                 <div className="flex-none">
                     <div className="dropdown dropdown-end">

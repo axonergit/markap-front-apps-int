@@ -41,13 +41,12 @@ export default function FooterFiveColsLogo() {
                       fill="rgba(255, 255, 255, .2)"
                     />
                   </svg>
-                  Brand
+                  Markap (Tiempo Encapsulado)
                 </a>
                 <p>
-                  Expertly made, responsive, accessible components in React and
-                  HTML ready to be used on your website or app. Just copy and
-                  paste them on your Tailwind CSS project.
+                Bienvenidos a Tiempo Capsulado, el rincón virtual donde el pasado y el presente se encuentran para bailar un vals! 🕰️✨
                 </p>
+                <p>¿Te emocionas cada vez que encuentras algo más viejo que tu abuelo? ¿Sientes mariposas en el estómago al tocar un objeto con historia? Entonces, ¡has aterrizado en el lugar correcto! En Tiempo Capsulado, cada artículo tiene una historia que contar, desde ese vinilo que tocaba en el primer beso de tus padres, hasta la cámara que capturó la primera luna llena del milenio.</p>
               </div>
               <nav
                 className="col-span-2 md:col-span-4 lg:col-span-2"
