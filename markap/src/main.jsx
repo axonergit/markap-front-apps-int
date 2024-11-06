@@ -10,6 +10,7 @@ import Me from "./Pages/Me.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Categorias from './Components/Categorias.jsx';
 import CategoriaProductos from './Components/CategoriaProductos.jsx';
+import Carrito from "./Pages/Carrito.jsx";
 
 // Configuración del enrutador con el parámetro opcional de página
 const router = createBrowserRouter(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
         { path: '/productos/categoria', element: <Categorias /> }, // Ruta para listar todas las categorías
         { path: '/productos/categoria/:id', element: <CategoriaProductos /> }, // Ruta para los detalles de cada categoría
         { path: '/productos/categoria/:id/page/:page?', element: <CategoriaProductos /> }, // Ruta con el número de página opcional
+        { path: '/carrito', element: <Carrito />},  // Ruta carrito
     ]
 );
 
