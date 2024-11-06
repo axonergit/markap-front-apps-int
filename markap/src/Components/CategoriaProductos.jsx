@@ -6,6 +6,7 @@ import Stars from "./Stars.jsx";
 import Pagination from "./Pagination.jsx";
 import { useState } from "react";
 import { Link } from "react-router-dom"; 
+import PaginaError from "./PaginaError.jsx";
 
 const CategoriaProductos = () => {
   // Captura el ID de la categoría desde la URL
@@ -23,9 +24,24 @@ const CategoriaProductos = () => {
 
   // Muestra la UI para los diferentes estados
   if (isLoading) return <p>Cargando productos de la categoría...</p>;
-  if (error) return <p>Error cargando los productos de la categoría.</p>;
+
+  if (error) {
+    // Extrae detalles del error si están disponibles
+    const errorMessage = error.response?.data?.message || "Error cargando los productos de la categoría."; 
+    const statusCode = error.response?.status;
+    
+    if(errorMessage != 500) { // rari
+      return <PaginaError statusCode={statusCode} message={errorMessage} />;
+    }
+    
+    else {
+      return <PaginaError statusCode={""} message={errorMessage} />;
+    }
+  }
 
   return (
+
+    <>
     <div>
       <MyNavbar />
       <div className="w-full min-h-screen bg-gradient-to-l from-amber-400 to-red-300 flex items-center justify-center py-14">
@@ -72,6 +88,8 @@ const CategoriaProductos = () => {
         </div>
       </div>
     </div>
+    </>
+    
   );
 };
 

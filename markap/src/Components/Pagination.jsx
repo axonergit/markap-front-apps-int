@@ -37,6 +37,7 @@ export default function Pagination({ currentPage, onPageChange, maxVisiblePages 
   }
 
   return (
+    
     <nav role="navigation" aria-label="Pagination Navigation">
       <ul className="flex list-none items-center justify-center text-sm text-slate-700 md:gap-1">
         <li>
