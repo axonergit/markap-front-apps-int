@@ -25,8 +25,9 @@ const Me = () => {
                         flexGrow: "1",
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "space-around",
+                        justifyContent: "start",
                         marginLeft: "5vh",
+                        gap: "1.2vh"
                     }}>
                     <UserProducts/>
                     <LikedProducts/>

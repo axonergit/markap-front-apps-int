@@ -12,7 +12,7 @@ export default function ScriptProductsProfile({ products }) {
     }
 
     return (
-        <div style={{margin: "2vh", gap: "2vh"}} className="grid grid-cols-2 grid-cols-4 ">
+        <div style={{margin: "2vh", gap: "2vh"}} className="grid grid-cols-5">
             {/* eslint-disable-next-line react/prop-types */}
             {products.map((item, index) => (
                 <Card
@@ -26,6 +26,7 @@ export default function ScriptProductsProfile({ products }) {
                             shadow="sm"
                             radius="lg"
                             alt={item.title}
+                            width="100%"
                             className="w-full object-cover h-[140px]"
                             src={item.img}
                         />

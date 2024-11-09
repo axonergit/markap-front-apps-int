@@ -1,7 +1,7 @@
-import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../config/axiosClient";
 import ScriptProductsProfile from "./ScriptProductsProfile.jsx";
+import {Accordion, AccordionItem} from "@nextui-org/react";
 
 export default function LikedProducts() {
 
@@ -19,7 +19,11 @@ export default function LikedProducts() {
 
     return(
         <div className="liked-products">
-            <ScriptProductsProfile products={likedProducts} />
+            <Accordion variant="splitted">
+                <AccordionItem key="1" title="Productos Favoritos">
+                    <ScriptProductsProfile products={likedProducts} />
+                </AccordionItem>
+            </Accordion>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import axiosClient from "../config/axiosClient.js";
 import { useQuery } from '@tanstack/react-query';
-import { Avatar } from '@nextui-org/react';
+import {Accordion, AccordionItem} from '@nextui-org/react';
 import ScriptProductsProfile from "./ScriptProductsProfile.jsx";
 
 export default function HistoryProducts() {
@@ -19,7 +19,11 @@ export default function HistoryProducts() {
 
     return (
         <div className="user-products">
-            <ScriptProductsProfile products={historyProducts} />
+            <Accordion variant="splitted">
+                <AccordionItem key="1" title="Historial de Compras">
+                    <ScriptProductsProfile products={historyProducts} />
+                </AccordionItem>
+            </Accordion>
         </div>
     );
 }
