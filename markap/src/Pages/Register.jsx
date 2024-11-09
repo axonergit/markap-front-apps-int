@@ -3,7 +3,7 @@ import { DatePicker, Input, Button } from "@nextui-org/react";
 import { I18nProvider } from "@react-aria/i18n";
 import axiosClient from "../config/axiosClient.js";
 import { useState } from "react";
-
+import MyNavbar from "../Components/Navbar.jsx";
 const Register = () => {
     const { register, setValue, handleSubmit, watch, formState: { errors } } = useForm();
     const handleDateChange = (date) => {
@@ -47,6 +47,8 @@ const Register = () => {
     };
 
     return (
+        <>
+        <MyNavbar></MyNavbar>
         <div
             className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 via-gray-900 to-black p-4">
             <form
@@ -157,6 +159,7 @@ const Register = () => {
                 </Button>
             </form>
         </div>
+        </>
     )
 };
 

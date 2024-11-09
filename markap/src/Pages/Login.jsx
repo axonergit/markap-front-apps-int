@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
 import axiosClient from "../config/axiosClient.js";
 import { useState } from "react";
+import MyNavbar from "../Components/Navbar.jsx";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,6 +34,8 @@ const Login = () => {
     };
 
     return (
+        <>
+        <MyNavbar></MyNavbar>
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 via-gray-900 to-black p-4">
             <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -92,6 +95,7 @@ const Login = () => {
                 </Button>
             </form>
         </div>
+        </>
     );
 
 };
