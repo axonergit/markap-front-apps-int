@@ -11,6 +11,8 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import Categorias from './Components/Categorias.jsx';
 import CategoriaProductos from './Components/CategoriaProductos.jsx';
 import Productos from "./Pages/Productos.jsx";
+import { AuthProvider } from './context/AuthContext.jsx';
+
 
 const router = createBrowserRouter(
     [
@@ -29,10 +31,12 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <NextUIProvider locale="es-ES">
-            <QueryClientProvider client={queryClient}>
-                <RouterProvider router={router}></RouterProvider>
-            </QueryClientProvider>
-        </NextUIProvider>
-    </StrictMode>,
-)
+        <AuthProvider>
+            <NextUIProvider locale="es-ES">
+                <QueryClientProvider client={queryClient}>
+                    <RouterProvider router={router}></RouterProvider>
+                </QueryClientProvider>
+            </NextUIProvider>
+        </AuthProvider>
+    </StrictMode>
+);

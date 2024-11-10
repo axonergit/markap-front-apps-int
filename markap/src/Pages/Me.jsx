@@ -1,27 +1,40 @@
-import axiosClient from "../config/axiosClient.js";
-import { useState, useEffect } from "react";
+import { } from '@nextui-org/react';
+import Navbar from "../Components/Navbar.jsx";
+import AboutMe from "../Components/AboutMe.jsx";
+import UserProducts from "../Components/UserProducts.jsx";
+import LikedProducts from "../Components/LikedProducts.jsx";
+import HistoryProducts from "../Components/HistoryProducts.jsx";
 
 const Me = () => {
-    const [datosUsuario, setDatosUsuario] = useState({});
-
-    useEffect(() => {
-        const obtenerUsuario = async () => {
-            try {
-                const response = await axiosClient.get("/users/me");
-                setDatosUsuario(response.data);
-            } catch (error) {
-                console.error("Error al obtener los datos del usuario", error);
-            }
-        };
-
-        obtenerUsuario();
-    }, []); // [] para ejecutar el efecto solo cuando el componente se monta
 
     return (
-        <div>
-            <h1>Hola, estamos en el perfil del usuario</h1>
-            <pre>{JSON.stringify(datosUsuario, null, 2)}</pre>
-        </div>
+        <>
+            <Navbar/>
+            <div style={
+                {
+                    padding: "2vh",
+                    display: "flex",
+                    justifyContent: "start",
+                    flexDirection: "row"
+                }}>
+                <div>
+                    <AboutMe />
+                </div>
+                <div style={
+                    {
+                        flexGrow: "1",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "start",
+                        marginLeft: "5vh",
+                        gap: "1.2vh"
+                    }}>
+                    <UserProducts/>
+                    <LikedProducts/>
+                    <HistoryProducts/>
+                </div>
+            </div>
+        </>
     );
 };
 
