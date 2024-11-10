@@ -106,9 +106,6 @@ const MyNavbar = () => {
                             <li>
                                 <Link to="/me">Mi perfil</Link>
                             </li>
-                            <li>
-                                <Link to="/historial">Mi historial</Link>
-                            </li>
                             { authorities.includes("ROLE_ADMIN") && (
                                     <li>
                                         <Link to="/admin/productos">Mis productos</Link>

@@ -52,7 +52,7 @@ const CrearProducto = () => {
     return (
         <>
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <button className="btn" onClick={()=>document.getElementById('my_modal_4').showModal()}>Crear producto</button>
+            <button className="btn w-1/4 bg-green-400" onClick={()=>document.getElementById('my_modal_4').showModal()}>Crear producto</button>
             <dialog id="my_modal_4" className="modal">
                 {/*Hacer el formulario para crear un producto*/}
                 <form onSubmit={handleSubmit(onSubmit)} className="modal-box w-11/12 max-w-5xl flex flex-col gap-6">

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import axiosClient from "../config/axiosClient";
+import axiosClient from "../../config/axiosClient.js";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { AuthContext } from '../context/AuthContext.jsx'; 
+import { AuthContext } from '../../context/AuthContext.jsx';
 import { Link } from "react-router-dom"; 
 
 // usar UseContext para mostrar algun texto como "Tenes que estar logueado para ver productos recientemente visitados"
@@ -51,14 +51,14 @@ export default function VisitadosRecientemente() {
   
 
     if (!isAuthenticated) {
-      return <p className="text-center text-white">Tenés que estar logueado para ver productos recientemente visitados. <Link to="/login" className="text-blue-500 underline">Iniciar sesión</Link></p>;
+      return <></>
     }
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error cargando productos visitados recientemente</div>;
   
     return (
-<>
+<div className= "h-full bg-gradient-to-r from-slate-900 to-slate-800 flex justify-center items-center">
     <div className="w-full h-1/2 flex items-center justify-center py-14">
       <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg py-5">
         <p className="text-lg mb-4">{"Ultimos productos visitados"}</p>
@@ -93,7 +93,7 @@ export default function VisitadosRecientemente() {
         )}
       </div>
     </div>
-</>
+</div>
 
     );
 }

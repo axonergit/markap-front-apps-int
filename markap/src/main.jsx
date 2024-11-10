@@ -8,7 +8,7 @@ import Login from "./Pages/Login.jsx";
 import Register from "./Pages/Register.jsx";
 import Me from "./Pages/Me.jsx";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import Categorias from './Components/Categorias.jsx';
+import Categorias from './Components/Landing/Categorias.jsx';
 import CategoriaProductos from './Components/CategoriaProductos.jsx';
 import Carrito from "./Pages/Carrito.jsx";
 import Productos from "./Pages/Productos.jsx";
