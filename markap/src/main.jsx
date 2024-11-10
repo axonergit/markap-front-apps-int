@@ -10,6 +10,7 @@ import Me from "./Pages/Me.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Categorias from './Components/Categorias.jsx';
 import CategoriaProductos from './Components/CategoriaProductos.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
 
 // Configuración del enrutador con el parámetro opcional de página
 const router = createBrowserRouter(
@@ -28,10 +29,12 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <NextUIProvider locale="es-ES">
-            <QueryClientProvider client={queryClient}>
-                <RouterProvider router={router}></RouterProvider>
-            </QueryClientProvider>
-        </NextUIProvider>
+        <AuthProvider>
+            <NextUIProvider locale="es-ES">
+                <QueryClientProvider client={queryClient}>
+                    <RouterProvider router={router}></RouterProvider>
+                </QueryClientProvider>
+            </NextUIProvider>
+        </AuthProvider>
     </StrictMode>
 );

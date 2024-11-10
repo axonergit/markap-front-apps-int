@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../config/axiosClient";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { AuthContext } from '../context/AuthContext.jsx'; 
+import { Link } from "react-router-dom"; 
 
 // usar UseContext para mostrar algun texto como "Tenes que estar logueado para ver productos recientemente visitados"
 
 export default function VisitadosRecientemente() {
+
+  const { isAuthenticated } = useContext(AuthContext);
+
     const settings = {
       dots: true,
       infinite: true,
@@ -41,8 +46,14 @@ export default function VisitadosRecientemente() {
     const { isLoading, error, data } = useQuery({
       queryKey: ['Visitados'],
       queryFn: () => axiosClient.get("/productos/visited/0").then(res => res.data),
+      enabled: isAuthenticated,
     });
   
+
+    if (!isAuthenticated) {
+      return <p className="text-center text-white">Tenés que estar logueado para ver productos recientemente visitados. <Link to="/login" className="text-blue-500 underline">Iniciar sesión</Link></p>;
+    }
+
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error cargando productos visitados recientemente</div>;
   
@@ -52,9 +63,9 @@ export default function VisitadosRecientemente() {
       <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg py-5">
         <p className="text-lg mb-4">{"Productos de la categoría"}</p>
 
-        {data.content && data.content.length > 0 ? (
+        {data && data.length > 0 ? (
           <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {data.content.slice(0, 5).map((producto) => (
+            {data.slice(0, 5).map((producto) => (
               <Link
                 to={`/producto/${producto.id}`}
                 key={producto.id}
@@ -72,7 +83,7 @@ export default function VisitadosRecientemente() {
                   {producto.detalles}
                 </p>
                 <p className="font-bold text-green-500 text-lg">
-                  Precio: ${producto.precio.toFixed(2)}
+                  Precio: ${producto.precio}
                 </p>
               </Link>
             ))}
