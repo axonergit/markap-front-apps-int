@@ -61,11 +61,11 @@ export default function VisitadosRecientemente() {
 <>
     <div className="w-full h-1/2 flex items-center justify-center py-14">
       <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg py-5">
-        <p className="text-lg mb-4">{"Productos de la categoría"}</p>
+        <p className="text-lg mb-4">{"Ultimos productos visitados"}</p>
 
         {data && data.length > 0 ? (
           <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {data.slice(0, 5).map((producto) => (
+            {data.map((producto) => (
               <Link
                 to={`/producto/${producto.id}`}
                 key={producto.id}
@@ -89,7 +89,7 @@ export default function VisitadosRecientemente() {
             ))}
           </ul>
         ) : (
-          <p>No hay productos en esta categoría.</p>
+          <p>No hay productos recientemente visitados.</p>
         )}
       </div>
     </div>
