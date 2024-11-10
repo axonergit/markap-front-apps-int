@@ -11,7 +11,7 @@ import PaginaError from "./PaginaError.jsx";
 const CategoriaProductos = () => {
   // Captura el ID de la categoría desde la URL
   const { id, page } = useParams();
-  const [currentPage, setCurrentPage] = useState(page ? parseInt(page) : 1); // Establece la página inicial desde el parámetro o 1
+  const [currentPage, setCurrentPage] = useState(page ? parseInt(page) : 0); // Establece la página inicial desde el parámetro o 1
 
   // Realiza la consulta para obtener los datos de la categoría, incluyendo la página actual
   const { isLoading, error, data } = useQuery({
