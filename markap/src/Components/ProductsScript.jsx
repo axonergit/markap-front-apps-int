@@ -24,7 +24,7 @@ export default function ProductsScript({ products }) {
                     </CardBody>
                     <CardFooter className="text-small justify-between">
                         <b>{item.descripcion}</b>
-                        <p className="text-default-500">{item.precio}</p>
+                        <p className="text-default-500">$ {item.precio}</p>
                     </CardFooter>
                 </Card>
             ))}

@@ -33,8 +33,8 @@ export default function HistoryScript({ compras }) {
                         />
                     </CardBody>
                     <CardFooter className="text-small justify-between">
-                        <b>Total</b>
-                        <p className="text-default-500">{item.precio}</p>
+                        <b>Fecha</b>
+                        <p className="text-default-500">{item.fecha || "16-10-2024"}</p>
                     </CardFooter>
                 </Card>
             ))}

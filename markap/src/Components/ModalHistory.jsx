@@ -1,4 +1,8 @@
-import {Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
+import {
+    Button,
+    Modal, ModalBody, ModalContent, ModalFooter, ModalHeader,
+    Table, TableBody, TableCell, TableColumn, TableHeader, TableRow
+} from "@nextui-org/react";
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../config/axiosClient.js";
 
@@ -16,6 +20,8 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
         enabled: isOpen && !!carritoId
     });
 
+    const totalAmount = itemsHistorial?.content?.reduce((sum, item) => sum + (item.amount * item.product.precio), 0);
+
     return (
         <Modal
             size="xs"
@@ -27,27 +33,36 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
                     <>
                         <ModalHeader className="flex flex-col gap-1">Historial</ModalHeader>
                         <ModalBody>
+                            {isLoading && <p>Cargando...</p>}
                             {error && <p>Error al cargar los datos</p>}
                             {itemsHistorial && Array.isArray(itemsHistorial.content) ? (
-                                itemsHistorial.content.map((item, index) => (
-                                    <div key={index} style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                    }}>
-                                        <p>{item.product.descripcion} - {item.amount}
-                                            $ {item.amount * item.product.precio}</p>
-                                    </div>
-                                ))
+                                <Table aria-label="Tabla de historial de compras">
+                                    <TableHeader>
+                                        <TableColumn>Articulo</TableColumn>
+                                        <TableColumn>Cantidad</TableColumn>
+                                        <TableColumn>Monto</TableColumn>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {itemsHistorial.content.map((item, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell>{item.product.descripcion}</TableCell>
+                                                <TableCell>{item.amount}</TableCell>
+                                                <TableCell>${item.amount * item.product.precio}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
                             ) : (
                                 !isLoading && <p>No se encontraron detalles.</p>
                             )}
+                            <div style={{paddingTop: '.2rem', textAlign: 'center'}}>
+                                <h4>Monto Total</h4>
+                                <p>${totalAmount?.toFixed(2)}</p>
+                            </div>
                         </ModalBody>
                         <ModalFooter>
                             <Button color="danger" variant="light" onPress={onClose}>
-                                Close
-                            </Button>
-                            <Button color="primary" onPress={onClose}>
-                                Action
+                                Cerrar
                             </Button>
                         </ModalFooter>
                     </>
