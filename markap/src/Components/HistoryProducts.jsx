@@ -1,27 +1,28 @@
 import axiosClient from "../config/axiosClient.js";
 import { useQuery } from '@tanstack/react-query';
 import {Accordion, AccordionItem} from '@nextui-org/react';
-import ScriptProductsProfile from "./ScriptProductsProfile.jsx";
+import HistoryScript from "./HistoryScript.jsx";
 
 export default function HistoryProducts() {
 
-    const {data: historyProducts, error, isLoading} = useQuery({
-        queryKey: ['historyProducts'],
+    const {data: comprasHistorial, isLoading, error} = useQuery({
+        queryKey: ['Historial'],
         queryFn: async () => {
-            const response = await axiosClient.get('/products/me');
+            const response = await axiosClient.get('/carrito/historial');
             return response.data;
         },
         staleTime: 1000 * 60 * 2
     });
 
-    // if (isLoading) return <span> Cargando Historial de Articulos... </span>;
-    // if (error) return <span> Error al Cargar Historial de Articulos </span>
-
     return (
-        <div className="user-products">
+        <div className="history-products" style={{ position: "relative" }}>
             <Accordion variant="splitted">
-                <AccordionItem key="1" title="Historial de Compras">
-                    <ScriptProductsProfile products={historyProducts} />
+                <AccordionItem key="1" title={
+                    <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
+                        Historial de Compras
+                    </div>
+                }>
+                    <HistoryScript compras={comprasHistorial} />
                 </AccordionItem>
             </Accordion>
         </div>

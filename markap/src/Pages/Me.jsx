@@ -1,7 +1,6 @@
 import { } from '@nextui-org/react';
 import Navbar from "../Components/Navbar.jsx";
 import AboutMe from "../Components/AboutMe.jsx";
-import UserProducts from "../Components/UserProducts.jsx";
 import LikedProducts from "../Components/LikedProducts.jsx";
 import HistoryProducts from "../Components/HistoryProducts.jsx";
 
@@ -10,7 +9,7 @@ const Me = () => {
     return (
         <>
             <Navbar/>
-            <div style={
+            <div className={"to-blue-500"} style={
                 {
                     padding: "2vh",
                     display: "flex",
@@ -29,7 +28,6 @@ const Me = () => {
                         marginLeft: "5vh",
                         gap: "1.2vh"
                     }}>
-                    <UserProducts/>
                     <LikedProducts/>
                     <HistoryProducts/>
                 </div>
