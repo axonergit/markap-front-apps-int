@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../config/axiosClient";
-import ScriptProductsProfile from "./ScriptProductsProfile.jsx";
+import ProductsScript from "./ProductsScript.jsx";
 import {Accordion, AccordionItem} from "@nextui-org/react";
 
 export default function LikedProducts() {
 
-    const { likedProducts ,isLoading, error } = useQuery({
+    const {data: likedProducts ,isLoading, error } = useQuery({
         queryKey: ['Likeados'],
         queryFn: async () => {
-            const response = await axiosClient.get('/products/me');
+            const response = await axiosClient.get('/productos/liked/');
             return response.data;
         },
         staleTime: 1000 * 60 * 2
@@ -17,11 +17,15 @@ export default function LikedProducts() {
     // if (isLoading) return <span> Cargando Articulos Likeados... </span> ;
     // if (error) return <span> Error cargando Articulos Likeados </span> ;
 
-    return(
-        <div className="liked-products">
+    return (
+        <div className="liked-products" style={{ position: "sticky" }}>
             <Accordion variant="splitted">
-                <AccordionItem key="1" title="Productos Favoritos">
-                    <ScriptProductsProfile products={likedProducts} />
+                <AccordionItem key="1" title={
+                    <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
+                        Articulos Favoritos
+                    </div>
+                }>
+                    <ProductsScript products={likedProducts} />
                 </AccordionItem>
             </Accordion>
         </div>
