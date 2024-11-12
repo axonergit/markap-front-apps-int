@@ -3,11 +3,20 @@ import Navbar from "../Components/Navbar.jsx";
 import AboutMe from "../Components/Me/AboutMe.jsx";
 import LikedProducts from "../Components/Me/LikedProducts.jsx";
 import HistoryProducts from "../Components/Me/HistoryProducts.jsx";
+import {useNavigate} from "react-router-dom";
 
 const Me = () => {
+    const navigate = useNavigate();
+    const token = localStorage.getItem("authToken")
+
     useEffect(() => {
         document.title = "Markap - Mi Perfil";
+        if (!token) {
+            navigate("/login");
+        }
     }, []);
+
+
     return (
         <>
 
