@@ -75,7 +75,7 @@ export default function VisitadosRecientemente() {
                   {producto.productEntity.descripcion}
                 </h2>
                 <img
-                  src={producto.productEntity.imagen}
+                  src={"data:image/png;base64, " + producto.productEntity.imagen}
                   className="w-full h-48 object-contain mb-3"
                   alt="Imagen"
                 />
