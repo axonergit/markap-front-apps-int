@@ -30,7 +30,7 @@ const Carrito = () => {
         try {
             let page = 0;
             let hayMasPaginas = true;
-            const size = 5;
+            const size = 100;
 
             while (hayMasPaginas) {
                 const response = await axiosClient.get(`/carrito/actual/items?page=${page}&size=${size}`);
