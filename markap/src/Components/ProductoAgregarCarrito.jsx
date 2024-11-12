@@ -10,9 +10,7 @@ export default function ProductoAgregarCarrito({ productoJson, cantidad, setCant
 
     const agregarAlCarrito = useMutation({
         mutationFn: async ({ productId, amount }) => {
-            const response = await axiosClient.put(`/carrito/add/${productId}`, {
-                amount: amount,
-            });
+            const response = await axiosClient.put(`/carrito/add/${productId}?amount=${amount}`);
             return response.data;
         },
         onSuccess: (data) => {
