@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="88bc2297-92c9-4a86-8f98-d17973090df4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markap/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/markap/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/markap/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markap/src/Components/TablaProductos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Components/TablaProductos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
