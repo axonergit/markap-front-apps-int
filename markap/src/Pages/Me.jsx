@@ -1,20 +1,24 @@
-import { } from '@nextui-org/react';
+import { useEffect } from 'react';
 import Navbar from "../Components/Navbar.jsx";
 import AboutMe from "../Components/AboutMe.jsx";
 import LikedProducts from "../Components/LikedProducts.jsx";
 import HistoryProducts from "../Components/HistoryProducts.jsx";
 
 const Me = () => {
-
+    useEffect(() => {
+        document.title = "Markap - Mi Perfil";
+    }, []);
     return (
         <>
+
             <Navbar/>
-            <div className={"to-blue-500"} style={
-                {
+            <div className={"bg-gradient-to-r from-slate-900 to-slate-800"}
+                 style={{
                     padding: "2vh",
                     display: "flex",
                     justifyContent: "start",
-                    flexDirection: "row"
+                    flexDirection: "row",
+                    minHeight: "100vh",
                 }}>
                 <div>
                     <AboutMe />

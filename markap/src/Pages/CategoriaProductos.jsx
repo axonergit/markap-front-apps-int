@@ -4,14 +4,18 @@ import axiosClient from "../config/axiosClient.js";
 import MyNavbar from "../Components/Navbar.jsx";
 import Stars from "../Components/Stars.jsx";
 import Pagination from "../Components/Pagination.jsx";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { Link } from "react-router-dom"; 
 import PaginaError from "../Components/PaginaError.jsx";
 
 const CategoriaProductos = () => {
   // Captura el ID de la categoría desde la URL
   const { id, page } = useParams();
-  const [currentPage, setCurrentPage] = useState(page ? parseInt(page) : 0); // Establece la página inicial desde el parámetro o 1
+  const [currentPage, setCurrentPage] = useState(page ? parseInt(page - 1) : 0); // Establece la página inicial desde el parámetro 0
+
+  useEffect(() => {
+    document.title = "Markap - Producto Categorias";
+  }, []);
 
   // Realiza la consulta para obtener los datos de la categoría, incluyendo la página actual
   const { isLoading, error, data } = useQuery({
@@ -79,8 +83,8 @@ const CategoriaProductos = () => {
           <div className="py-10">
             <Pagination 
               categoryId={id} 
-              currentPage={currentPage} 
-              onPageChange={setCurrentPage}
+              currentPage={currentPage + 1} 
+              onPageChange={(page) => setCurrentPage(page - 1)}
               totalPages={data.totalPages}
             />
           </div>

@@ -20,14 +20,15 @@ export default function ProductoInfo( { productoJson } ) {
     );
 
     return (
-        <div>
+        <div className="bg-neutral-content"
+             style={{padding: "1em", width: "30rem", height: "auto",borderRadius: "8px"}}>
             <h1 style={{fontSize: "2.5rem", fontWeight: "bold"}}>{productoJson.descripcion}</h1>
             <p style={{width: '25rem'}}>
                 {productoJson.detalles}
             </p>
             <h2 style={{fontSize: "1.6rem", fontWeight: "bold"}}> $ {productoJson.precio}</h2>
             <h2 style={{fontSize: "1rem", fontWeight: "bold"}}>
-                Categoria: <Chip>
+                Categoria: <Chip color="primary" variant="bordered">
                 <Link href={CategoriaProducto && "../productos/categoria/"+matchedCategoria.id}>
                 {productoJson.nombreCategoria}
                 </Link>
