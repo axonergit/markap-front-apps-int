@@ -1,6 +1,6 @@
 import { useForm, Controller } from "react-hook-form";
 import { Input, Button, Textarea, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Select, SelectItem } from "@nextui-org/react";
-import axiosClient from "../config/axiosClient.js";
+import axiosClient from "../../config/axiosClient.js";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 

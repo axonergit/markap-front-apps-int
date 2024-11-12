@@ -1,4 +1,4 @@
-import axiosClient from "../config/axiosClient.js";
+import axiosClient from "../../config/axiosClient.js";
 import { useQuery } from '@tanstack/react-query';
 import {Accordion, AccordionItem} from '@nextui-org/react';
 import HistoryScript from "./HistoryScript.jsx";

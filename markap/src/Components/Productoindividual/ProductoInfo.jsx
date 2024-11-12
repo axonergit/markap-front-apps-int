@@ -1,7 +1,7 @@
 import React from "react";
 import {Chip , Link} from "@nextui-org/react";
 import {useQuery} from "@tanstack/react-query";
-import axiosClient from "../config/axiosClient.js";
+import axiosClient from "../../config/axiosClient.js";
 
 // eslint-disable-next-line react/prop-types
 export default function ProductoInfo( { productoJson } ) {

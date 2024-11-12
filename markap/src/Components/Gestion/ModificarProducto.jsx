@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useForm, Controller } from "react-hook-form";
 import { Input, Button, Textarea, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Select, SelectItem } from "@nextui-org/react";
 import { useState, useEffect } from "react";
-import axiosClient from "../config/axiosClient.js";
+import axiosClient from "../../config/axiosClient.js";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const ModificarProducto = ({ producto, onClose, size, className }) => {

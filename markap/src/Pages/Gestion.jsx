@@ -1,8 +1,8 @@
-import TablaProductos from "../Components/TablaProductos.jsx";
+import TablaProductos from "../Components/Gestion/TablaProductos.jsx";
 import MyNavbar from "../Components/Navbar.jsx";
 import {useEffect} from "react";
 
-const Productos = () => {
+const Gestion = () => {
     useEffect(() => {
         document.title = "Markap - Producto Categoria";
     }, []);
@@ -18,4 +18,4 @@ const Productos = () => {
     )
 }
 
-export default Productos;
+export default Gestion;

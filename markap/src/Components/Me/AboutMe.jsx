@@ -1,4 +1,4 @@
-    import axiosClient from "../config/axiosClient.js";
+    import axiosClient from "../../config/axiosClient.js";
     import {Avatar, Accordion, AccordionItem, CircularProgress} from '@nextui-org/react';
     import {useQuery} from "@tanstack/react-query";
 

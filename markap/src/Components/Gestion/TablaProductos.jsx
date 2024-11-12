@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import axiosClient from "../config/axiosClient.js";
+import axiosClient from "../../config/axiosClient.js";
 import ModificarProducto from "./ModificarProducto.jsx";
 import { Button, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, Card, CardBody, CardHeader, CardFooter } from "@nextui-org/react";
 import CrearProducto from "./CrearProducto.jsx";

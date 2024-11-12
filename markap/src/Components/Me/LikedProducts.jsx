@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import axiosClient from "../config/axiosClient";
-import ProductsScript from "./ProductsScript.jsx";
+import axiosClient from "../../config/axiosClient.js";
+import ProductsScript from "../ProductsScript.jsx";
 import {Accordion, AccordionItem} from "@nextui-org/react";
 
 export default function LikedProducts() {

@@ -1,7 +1,7 @@
 import axiosClient from "../config/axiosClient.js";
 import {useContext, useEffect, useState} from "react";
 import Navbar from "../Components/Navbar.jsx";
-import ModalCarrito from "../Components/ModalCarrito.jsx";
+import ModalCarrito from "../Components/Me/ModalCarrito.jsx";
 import {Link} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext.jsx";
 import {jwtDecode} from "jwt-decode";

@@ -4,7 +4,7 @@ import {
     Table, TableBody, TableCell, TableColumn, TableHeader, TableRow
 } from "@nextui-org/react";
 import { useQuery } from '@tanstack/react-query';
-import axiosClient from "../config/axiosClient.js";
+import axiosClient from "../../config/axiosClient.js";
 import {useState} from "react";
 
 // eslint-disable-next-line react/prop-types

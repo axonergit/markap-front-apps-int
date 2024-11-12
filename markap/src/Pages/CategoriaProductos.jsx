@@ -50,7 +50,7 @@ const CategoriaProductos = () => {
       <MyNavbar />
       <div className="w-full min-h-screen bg-gradient-to-r from-slate-900 to-slate-800 flex items-center justify-center py-14">
         <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg py-5">
-          <p className="text-lg mb-4">{"Productos de la categoría"}</p>
+          <p className="text-lg mb-4">{"Gestion de la categoría"}</p>
 
           {data.content && data.content.length > 0 ? (
            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">

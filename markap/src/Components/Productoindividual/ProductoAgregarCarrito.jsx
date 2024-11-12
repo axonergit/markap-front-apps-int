@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {Button, Spinner} from "@nextui-org/react";
 import {useMutation} from "@tanstack/react-query";
-import axiosClient from "../config/axiosClient.js";
+import axiosClient from "../../config/axiosClient.js";
 import {useNavigate} from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types

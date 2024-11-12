@@ -1,16 +1,16 @@
 import MyNavbar from "../Components/Navbar.jsx";
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../config/axiosClient.js";
-import ProductoImage from "../Components/ProductoImage.jsx";
+import ProductoImage from "../Components/Productoindividual/ProductoImage.jsx";
 import { useParams } from "react-router-dom";
-import ProductoInfo from "../Components/ProductoInfo.jsx";
-import ProductoCantidad from "../Components/ProductoCantidad.jsx";
+import ProductoInfo from "../Components/Productoindividual/ProductoInfo.jsx";
+import ProductoCantidad from "../Components/Productoindividual/ProductoCantidad.jsx";
 import { useEffect, useState } from "react";
-import ProductoAgregarCarrito from "../Components/ProductoAgregarCarrito.jsx";
-import ProductoAgregarLike from "../Components/ProductoAgregarLike.jsx";
+import ProductoAgregarCarrito from "../Components/Productoindividual/ProductoAgregarCarrito.jsx";
+import ProductoAgregarLike from "../Components/Productoindividual/ProductoAgregarLike.jsx";
 import {Spinner} from "@nextui-org/react";
 
-const ProductoVista = () => {
+const ProductoIndividual = () => {
     const { productId } = useParams();
     const [cantidadActual, setCantidadActual] = useState(0);
     const [cantidad, setCantidad] = useState(0);
@@ -105,4 +105,4 @@ const ProductoVista = () => {
     );
 }
 
-export default ProductoVista;
+export default ProductoIndividual;

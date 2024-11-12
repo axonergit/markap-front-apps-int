@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import Navbar from "../Components/Navbar.jsx";
-import AboutMe from "../Components/AboutMe.jsx";
-import LikedProducts from "../Components/LikedProducts.jsx";
-import HistoryProducts from "../Components/HistoryProducts.jsx";
+import AboutMe from "../Components/Me/AboutMe.jsx";
+import LikedProducts from "../Components/Me/LikedProducts.jsx";
+import HistoryProducts from "../Components/Me/HistoryProducts.jsx";
 
 const Me = () => {
     useEffect(() => {
