@@ -1,59 +1,86 @@
-import {useQuery} from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axiosClient from "../config/axiosClient.js";
 import ModificarProducto from "./ModificarProducto.jsx";
-import {Button} from "@nextui-org/react";
+import { Button, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, Card, CardBody, CardHeader, CardFooter } from "@nextui-org/react";
+import CrearProducto from "./CrearProducto.jsx";
 
 const TablaProductos = () => {
+    const queryClient = useQueryClient();
 
     const { isLoading, error, data } = useQuery({
         queryKey: ['Productos'],
-        queryFn: () =>
-            axiosClient.get("/productos").then((res) => res.data),
+        queryFn: () => axiosClient.get("/productos").then((res) => res.data),
     });
 
-    if (isLoading) return 'Loading...';
-    if (error) return 'Error cargando productos';
-
-    console.log(data);
-
-    const EliminarProducto = (id) => {
-        axiosClient.delete("/productos/"+id).then((res) => {
-            //agregar para refrescar la pagina
-            console.log(res)});
+    const EliminarProducto = async (id) => {
+        if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
+            try {
+                await axiosClient.delete(`/productos/${id}`);
+                queryClient.invalidateQueries(['Productos']);
+            } catch (error) {
+                console.error("Error al eliminar el producto:", error);
+            }
+        }
     }
 
-    return (
-        <div className="overflow-x-auto">
-            <table className="table table-xs">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Nombre producto</th>
-                    <th>Descripcion</th>
-                    <th>Categoria</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-                </thead>
-                <tbody>
-                {data?.map((producto) => (
-                    <tr key={producto.id}>
-                        <th>{producto.id}</th>
-                        <td>{producto.descripcion}</td>
-                        <td>{producto.detalles}</td>
-                        <td>{producto.nombreCategoria}</td>
-                        <td>{producto.precio}</td>
-                        <td>{producto.stock}</td>
-                        <td><ModificarProducto></ModificarProducto></td>
-                        <td><Button color="danger" onClick={() => EliminarProducto(producto.id)}>Eliminar</Button></td>
-                    </tr>
-                ))}
+    if (isLoading) return <Spinner label="Cargando productos..." />;
+    if (error) return <div className="text-red-500">Error cargando productos: {error.message}</div>;
 
-                </tbody>
-            </table>
-        </div>
+    return (
+        <Card className="w-full">
+            <CardHeader className="flex justify-between items-center">
+                <h1 className="text-2xl font-bold">Productos</h1>
+                <CrearProducto />
+            </CardHeader>
+            <CardBody>
+                <Table aria-label="Tabla de productos" className="w-full">
+                    <TableHeader>
+                        <TableColumn>ID</TableColumn>
+                        <TableColumn>Nombre producto</TableColumn>
+                        <TableColumn hideHeader={true}>Descripción</TableColumn>
+                        <TableColumn>Categoría</TableColumn>
+                        <TableColumn>Precio</TableColumn>
+                        <TableColumn>Stock</TableColumn>
+                        <TableColumn>Acciones</TableColumn>
+                    </TableHeader>
+                    <TableBody emptyContent="No hay productos para mostrar.">
+                        {data?.map((producto) => (
+                            <TableRow key={producto.id}>
+                                <TableCell>{producto.id}</TableCell>
+                                <TableCell>{producto.descripcion}</TableCell>
+                                <TableCell>{producto.detalles}</TableCell>
+                                <TableCell>{producto.nombreCategoria}</TableCell>
+                                <TableCell>${producto.precio.toFixed(2)}</TableCell>
+                                <TableCell>{producto.stock}</TableCell>
+                                <TableCell>
+                                    <div className="flex gap-2">
+                                        <ModificarProducto
+                                            producto={producto}
+                                            onClose={() => queryClient.invalidateQueries(['Productos'])}
+                                            size="sm"
+                                            className="w-[90px]"
+                                        />
+                                        <Button
+                                            color="danger"
+                                            size="sm"
+                                            onClick={() => EliminarProducto(producto.id)}
+                                            className="w-[90px]"
+                                        >
+                                            Eliminar
+                                        </Button>
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardBody>
+            <CardFooter>
+                <div className="flex justify-between w-full">
+                    <p>Total de productos: {data?.length || 0}</p>
+                </div>
+            </CardFooter>
+        </Card>
     )
 }
 

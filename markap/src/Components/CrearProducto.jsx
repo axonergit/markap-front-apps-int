@@ -1,18 +1,29 @@
-import {useForm} from "react-hook-form";
-import { Input, Button, Textarea } from "@nextui-org/react";
+import { useForm, Controller } from "react-hook-form";
+import { Input, Button, Textarea, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Select, SelectItem } from "@nextui-org/react";
 import axiosClient from "../config/axiosClient.js";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const CrearProducto = () => {
-
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+    const queryClient = useQueryClient();
+
+    const { control, handleSubmit, reset, formState: { errors } } = useForm({
+        defaultValues: {
+            descripcion: '',
+            precio: '',
+            detalles: '',
+            stock: '',
+            categoria: '',
+            imagen: null
+        }
+    });
 
     // Fetch categories
-    const { isLoading: categoriasLoading, error: categoriasError, data: categorias } = useQuery({
+    const { data: categorias } = useQuery({
         queryKey: ['Categorias'],
         queryFn: () => axiosClient.get("/productos/categoria").then((res) => res.data),
     });
@@ -31,13 +42,16 @@ const CrearProducto = () => {
             formData.append("stock", data.stock);
             formData.append("categoria", data.categoria);
 
-            const response = await axiosClient.post("/productos", formData, {
+            await axiosClient.post("/productos", formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             });
 
             setSuccessMessage("Producto creado exitosamente");
+            queryClient.invalidateQueries(['Productos']);
+            reset();
             setTimeout(() => {
-                document.getElementById('my_modal_4').close();
+                setIsOpen(false);
+                setSuccessMessage(null);
             }, 2000);
         } catch (error) {
             setErrorMessage(error.response?.data?.message || "Error al crear el producto");
@@ -46,94 +60,138 @@ const CrearProducto = () => {
         }
     };
 
-    if (categoriasLoading) return <p>Loading...</p>;
-    if (categoriasError) return <p>Error cargando categorías</p>;
-
     return (
         <>
-            {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <button className="btn" onClick={()=>document.getElementById('my_modal_4').showModal()}>Crear producto</button>
-            <dialog id="my_modal_4" className="modal">
-                {/*Hacer el formulario para crear un producto*/}
-                <form onSubmit={handleSubmit(onSubmit)} className="modal-box w-11/12 max-w-5xl flex flex-col gap-6">
-                    <h1>Nuevo Producto</h1>
-                    {errorMessage && <div className="alert alert-error">{errorMessage}</div>}
-                    {successMessage && <div className="alert alert-success">{successMessage}</div>}
+            <Button color="primary" onPress={() => setIsOpen(true)}>
+                Crear Producto
+            </Button>
+            <Modal
+                isOpen={isOpen}
+                onClose={() => {
+                    setIsOpen(false);
+                    reset();
+                    setSuccessMessage(null);
+                    setErrorMessage(null);
+                }}
+                size="3xl"
+                scrollBehavior="inside"
+            >
+                <ModalContent>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <ModalHeader className="flex flex-col gap-1">Nuevo Producto</ModalHeader>
+                        <ModalBody>
+                            {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
+                            {successMessage && <div className="text-green-500 mb-4">{successMessage}</div>}
 
-                    <Input
-                        {...register("descripcion", {required: "La descripción es obligatoria"})}
-                        label="Descripción"
-                        placeholder="Ingrese la descripción del producto"
-                        variant="bordered"
-                        isInvalid={!!errors.descripcion}
-                        errorMessage={errors.descripcion?.message}
-                    />
+                            <Controller
+                                name="descripcion"
+                                control={control}
+                                rules={{ required: "La descripción es obligatoria" }}
+                                render={({ field }) => (
+                                    <Input
+                                        {...field}
+                                        label="Descripción"
+                                        placeholder="Ingrese la descripción del producto"
+                                        isInvalid={!!errors.descripcion}
+                                        errorMessage={errors.descripcion?.message}
+                                    />
+                                )}
+                            />
 
-                    <Input
-                        {...register("precio", {required: "El precio es obligatorio"})}
-                        label="Precio"
-                        placeholder="Ingrese el precio del producto"
-                        type="number"
-                        variant="bordered"
-                        isInvalid={!!errors.precio}
-                        errorMessage={errors.precio?.message}
-                    />
+                            <Controller
+                                name="precio"
+                                control={control}
+                                rules={{ required: "El precio es obligatorio" }}
+                                render={({ field }) => (
+                                    <Input
+                                        {...field}
+                                        label="Precio"
+                                        placeholder="Ingrese el precio del producto"
+                                        type="number"
+                                        isInvalid={!!errors.precio}
+                                        errorMessage={errors.precio?.message}
+                                    />
+                                )}
+                            />
 
-                    <Textarea
-                        {...register("detalles", {required: "Los detalles son obligatorios"})}
-                        label="Detalles"
-                        placeholder="Ingrese los detalles del producto"
-                        variant="bordered"
-                        isInvalid={!!errors.detalles}
-                        errorMessage={errors.detalles?.message}
-                    />
+                            <Controller
+                                name="detalles"
+                                control={control}
+                                rules={{ required: "Los detalles son obligatorios" }}
+                                render={({ field }) => (
+                                    <Textarea
+                                        {...field}
+                                        label="Detalles"
+                                        placeholder="Ingrese los detalles del producto"
+                                        isInvalid={!!errors.detalles}
+                                        errorMessage={errors.detalles?.message}
+                                    />
+                                )}
+                            />
 
-                    <Input
-                        {...register("stock", {required: "El stock es obligatorio"})}
-                        label="Stock"
-                        placeholder="Ingrese el stock del producto"
-                        type="number"
-                        variant="bordered"
-                        isInvalid={!!errors.stock}
-                        errorMessage={errors.stock?.message}
-                    />
+                            <Controller
+                                name="stock"
+                                control={control}
+                                rules={{ required: "El stock es obligatorio" }}
+                                render={({ field }) => (
+                                    <Input
+                                        {...field}
+                                        label="Stock"
+                                        placeholder="Ingrese el stock del producto"
+                                        type="number"
+                                        isInvalid={!!errors.stock}
+                                        errorMessage={errors.stock?.message}
+                                    />
+                                )}
+                            />
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Categoría</label>
-                        <select
-                            {...register("categoria", {required: "La categoría es obligatoria"})}
-                            className="border border-gray-300 rounded-lg w-full px-3 py-2"
-                        >
-                            <option value="">Seleccione una categoría</option>
-                            {categorias.map((categoria) => (
-                                <option key={categoria.id} value={categoria.id}>
-                                    {categoria.nombreCategoria}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.categoria && <p className="text-red-500 text-sm mt-1">{errors.categoria.message}</p>}
-                    </div>
+                            <Controller
+                                name="categoria"
+                                control={control}
+                                rules={{ required: "La categoría es obligatoria" }}
+                                render={({ field }) => (
+                                    <Select
+                                        {...field}
+                                        label="Categoría"
+                                        placeholder="Seleccione una categoría"
+                                        isInvalid={!!errors.categoria}
+                                        errorMessage={errors.categoria?.message}
+                                    >
+                                        {categorias?.map((categoria) => (
+                                            <SelectItem key={categoria.id} value={categoria.id.toString()}>
+                                                {categoria.nombreCategoria}
+                                            </SelectItem>
+                                        ))}
+                                    </Select>
+                                )}
+                            />
 
-                    <Input
-                        {...register("imagen", {required: "La imagen es obligatoria"})}
-                        label="Imagen"
-                        type="file"
-                        variant="bordered"
-                        isInvalid={!!errors.imagen}
-                        errorMessage={errors.imagen?.message}
-                    />
-
-                    <div className="modal-action">
-                        <Button type="submit" color="primary" isLoading={isLoading}>
-                            Crear
-                        </Button>
-                        <Button type="button" color="secondary"
-                                onClick={() => document.getElementById('my_modal_4').close()}>
-                            Cerrar
-                        </Button>
-                    </div>
-                </form>
-            </dialog>
+                            <Controller
+                                name="imagen"
+                                control={control}
+                                rules={{ required: "La imagen es obligatoria" }}
+                                render={({ field }) => (
+                                    <Input
+                                        type="file"
+                                        label="Imagen"
+                                        onChange={(e) => field.onChange(e.target.files)}
+                                        isInvalid={!!errors.imagen}
+                                        errorMessage={errors.imagen?.message}
+                                    />
+                                )}
+                            />
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="danger" variant="light" onPress={() => setIsOpen(false)}>
+                                Cerrar
+                            </Button>
+                            <Button color="primary" type="submit" isLoading={isLoading}>
+                                Crear
+                            </Button>
+                        </ModalFooter>
+                    </form>
+                </ModalContent>
+            </Modal>
         </>
     )
 }

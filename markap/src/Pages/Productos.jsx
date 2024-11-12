@@ -11,10 +11,6 @@ const Productos = () => {
 
             </MyNavbar>
 
-            <CrearProducto>
-
-            </CrearProducto>
-
             <TablaProductos>
 
             </TablaProductos>
