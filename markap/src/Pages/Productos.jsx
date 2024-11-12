@@ -7,13 +7,8 @@ const Productos = () => {
         <div className="flex flex-col">
             <MyNavbar>
             </MyNavbar>
-
-            <div className="flex-1 flex flex-col gap-32 px-32 py-16">
-                <CrearProducto/>
-                <TablaProductos/>
-            </div>
-
-
+            <TablaProductos>
+            </TablaProductos>
         </div>
 
     )
