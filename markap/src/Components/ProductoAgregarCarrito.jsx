@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
-import { Button, Spinner } from "@nextui-org/react";
-import { useMutation } from "@tanstack/react-query";
+import {useEffect} from "react";
+import {Button, Spinner} from "@nextui-org/react";
+import {useMutation} from "@tanstack/react-query";
 import axiosClient from "../config/axiosClient.js";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-export default function ProductoAgregarCarrito({ productoJson, cantidad, setCantidad }) {
+export default function ProductoAgregarCarrito({productoJson, cantidad, setCantidad}) {
     const navigate = useNavigate();
+    const token = localStorage.getItem("authToken")
 
     const agregarAlCarrito = useMutation({
-        mutationFn: async ({ productId, amount }) => {
+        mutationFn: async ({productId, amount}) => {
             const response = await axiosClient.put(`/carrito/add/${productId}?amount=${amount}`);
             return response.data;
         },
@@ -37,8 +38,12 @@ export default function ProductoAgregarCarrito({ productoJson, cantidad, setCant
     }, [agregarAlCarrito.isSuccess, agregarAlCarrito.isError, navigate, setCantidad]);
 
     const handleAgregarAlCarrito = () => {
+        if (token){
         if (cantidad > 0) {
-            agregarAlCarrito.mutate({ productId: productoJson.id, amount: cantidad });
+            agregarAlCarrito.mutate({productId: productoJson.id, amount: cantidad});
+        }}
+        else {
+            navigate("/login")
         }
     };
 
@@ -46,14 +51,14 @@ export default function ProductoAgregarCarrito({ productoJson, cantidad, setCant
         <>
             <Button
                 className="w-[260px] h-[60px]"
-                style={{ fontSize: "1.2rem", fontWeight: "bold" }}
+                style={{fontSize: "1.2rem", fontWeight: "bold"}}
                 color="primary"
                 size="lg"
                 onClick={handleAgregarAlCarrito}
                 disabled={cantidad === 0}
             >
                 {!agregarAlCarrito.isLoading && "AGREGAR AL CARRITO"}
-                {agregarAlCarrito.isLoading && <Spinner />}
+                {agregarAlCarrito.isLoading && <Spinner/>}
             </Button>
 
             {agregarAlCarrito.isSuccess && (
