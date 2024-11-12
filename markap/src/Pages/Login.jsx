@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
 import axiosClient from "../config/axiosClient.js";
 import { useState } from "react";
+import MyNavbar from "../Components/Navbar.jsx";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,19 +34,30 @@ const Login = () => {
     };
 
     return (
-        <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-b from-gray-600 to-gray-800">
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-5/6 h-2/3 bg-white p-8 rounded-2xl gap-32 md:w-2/3 lg:w-5/12 sm:p-14">
+        <>
+        <MyNavbar></MyNavbar>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 via-gray-900 to-black p-4">
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col w-full max-w-lg bg-white/90 p-10 rounded-3xl shadow-2xl backdrop-blur-lg gap-8 transition-transform transform hover:scale-105"
+            >
                 {errorMessage && (
-                    <div className="alert alert-error mb-4">
+                    <div className="alert alert-error flex items-center p-4 mb-4 text-red-700 bg-red-100 rounded-lg">
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-1.414 1.414a9 9 0 11-12.728 0l-1.414-1.414a11 11 0 1015.556 0z"></path>
+                        </svg>
                         <span>{errorMessage}</span>
                     </div>
                 )}
                 {successMessage && (
-                    <div className="alert alert-success mb-4">
+                    <div className="alert alert-success flex items-center p-4 mb-4 text-green-700 bg-green-100 rounded-lg">
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2l4-4m0-4a8 8 0 11-8 8a8 8 0 018-8z"></path>
+                        </svg>
                         <span>{successMessage}</span>
                     </div>
                 )}
-                <div>
+                <div className="space-y-4">
                     <Input
                         {...register("username", { required: "El nombre de usuario es obligatorio" })}
                         label={"Nombre de usuario"}
@@ -57,7 +69,7 @@ const Login = () => {
                     />
                 </div>
 
-                <div>
+                <div className="space-y-4">
                     <Input
                         {...register("password", {
                             required: "La contraseña es obligatoria",
@@ -72,12 +84,20 @@ const Login = () => {
                         errorMessage={errors.password?.message}
                     />
                 </div>
-                <Button type="submit" color="primary" isLoading={isLoading}>
+
+                <Button
+                    type="submit"
+                    color="primary"
+                    isLoading={isLoading}
+                    className="mt-6 w-full py-3 rounded-lg text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-300 ease-in-out"
+                >
                     Iniciar sesión
                 </Button>
             </form>
         </div>
+        </>
     );
+
 };
 
 export default Login;

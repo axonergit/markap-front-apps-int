@@ -16,6 +16,7 @@ const Categorias = () => {
     console.log(data)
    
     return (
+        <>
         <div className="w-full h-full bg-gradient-to-l from-amber-400 to-red-300 flex items-center justify-center ">
             <ul className="w-11/12 max-w-6xl h-full grid gap-2 p-10 md:grid-cols-2 lg:grid-cols-4">
                 {data?.map((categoria) => (
@@ -32,6 +33,8 @@ const Categorias = () => {
                 ))}
             </ul>
         </div>
+        </>
+        
     )
 }
 
