@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88bc2297-92c9-4a86-8f98-d17973090df4" name="Changes" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/markap/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/markap/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/src/Components/ModalHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Components/ModalHistory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/src/Components/ProductoAgregarCarrito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Components/ProductoAgregarCarrito.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/src/Components/ProductoCantidad.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Components/ProductoCantidad.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/src/Pages/ProductoVista.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Pages/ProductoVista.jsx" afterDir="false" />
+=======
       <change afterPath="$PROJECT_DIR$/markap/src/Components/ModalCarrito.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markap/src/Pages/Carrito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Pages/Carrito.jsx" afterDir="false" />
+>>>>>>> 9ceaae93f0e206272048226a69036cc6482bc9b1
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +81,9 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2mrJZzHk3S9o8SGYzccH8thnhEJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -80,8 +93,12 @@
     "Node.js.App.js.executor": "Run",
     "Node.js.App.jsx.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
+    "git-widget-placeholder": "main",
+=======
     "git-widget-placeholder": "carrito2",
     "ignore_missing_gitignore": "true",
+>>>>>>> 9ceaae93f0e206272048226a69036cc6482bc9b1
     "last_opened_file_path": "C:/Users/Sebye/Documents/Codigo/MisAndanzasConDino/DISz Web",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -158,5 +175,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

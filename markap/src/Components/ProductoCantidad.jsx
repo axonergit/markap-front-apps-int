@@ -5,15 +5,12 @@ import {Button} from "@nextui-org/react";
 export default function ProductoCantidad({ productoJson, cantidad, cantidadQuery, setCantidad } ) {
 
     const maxAmount = productoJson.stock;
-
     const handleIncremento = () => {
-        if (cantidadQuery + cantidad < maxAmount) {
-            setCantidad(cantidad + 1);
-        }
+        setCantidad(cantidad + 1);
     };
 
     const handleDisminuir = () => {
-        if (cantidad || cantidadQuery) {
+        if (cantidad) {
             setCantidad(cantidad - 1)
         }
     };
@@ -27,7 +24,7 @@ export default function ProductoCantidad({ productoJson, cantidad, cantidadQuery
                     border: "2px solid #0072F5",
                     borderRight: "none",
                 }}
-                auto size="md" color="primary" onClick={handleDisminuir} disabled={cantidad === 0}
+                auto size="md" color="primary" onClick={handleDisminuir} disabled={cantidad == 0}
             >
                 -
             </Button>
@@ -50,7 +47,7 @@ export default function ProductoCantidad({ productoJson, cantidad, cantidadQuery
                     border: "2px solid #0072F5",
                     borderLeft: "none",
                 }}
-                auto size="md" color="primary" onClick={handleIncremento} disabled={cantidad === maxAmount}
+                auto size="md" color="primary" onClick={handleIncremento} disabled={cantidad+cantidadQuery == maxAmount}
             >
                 +
             </Button>

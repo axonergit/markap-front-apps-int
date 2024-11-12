@@ -24,8 +24,8 @@ const ProductoVista = () => {
     });
 
     useEffect(() => {
-        document.title = `Markap - ${ProductoResponse.descripcion}`;
-    }, []);
+        document.title = `Markap - Producto`;
+    }, [ProductoResponse]);
 
     useEffect(() => {
         async function fetchData() {
@@ -33,7 +33,7 @@ const ProductoVista = () => {
                 const response = await axiosClient.get('/carrito/actual/items');
                 const datos = response.data.content;
                 const productoResultado = datos?.find(
-                    (productos) => productos.product.id === productId
+                    (productos) => productos.product.id == productId
                 );
                 if (productoResultado) setCantidadActual(productoResultado.amount);
             } catch (err) {

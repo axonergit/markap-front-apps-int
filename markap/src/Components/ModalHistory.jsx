@@ -1,5 +1,5 @@
 import {
-    Button,
+    Button, Link,
     Modal, ModalBody, ModalContent, ModalFooter, ModalHeader,
     Table, TableBody, TableCell, TableColumn, TableHeader, TableRow
 } from "@nextui-org/react";
@@ -24,7 +24,7 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
 
     return (
         <Modal
-            size="xs"
+            size="sm"
             isOpen={isOpen}
             onClose={onClose}
         >
@@ -45,7 +45,9 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
                                     <TableBody>
                                         {itemsHistorial.content.map((item, index) => (
                                             <TableRow key={index}>
-                                                <TableCell>{item.product.descripcion}</TableCell>
+                                                <TableCell>
+                                                    <Link href={`../producto/${item.product.id}`}>{item.product.descripcion}</Link>
+                                                </TableCell>
                                                 <TableCell>{item.amount}</TableCell>
                                                 <TableCell>${item.amount * item.product.precio}</TableCell>
                                             </TableRow>
