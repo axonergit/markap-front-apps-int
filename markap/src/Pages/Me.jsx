@@ -12,12 +12,13 @@ const Me = () => {
         <>
 
             <Navbar/>
-            <div className={"to-blue-500"} style={
-                {
+            <div className={"bg-gradient-to-r from-slate-900 to-slate-800"}
+                 style={{
                     padding: "2vh",
                     display: "flex",
                     justifyContent: "start",
-                    flexDirection: "row"
+                    flexDirection: "row",
+                    minHeight: "100vh",
                 }}>
                 <div>
                     <AboutMe />

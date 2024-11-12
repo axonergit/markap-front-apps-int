@@ -49,13 +49,17 @@ const ProductoVista = () => {
     return (
         <div className="flex flex-col">
             <MyNavbar />
-            <div className="flex flex-row" style={{
-                marginTop: "1rem",
-                marginLeft: "12rem",
+            <div className="flex flex-row bg-gradient-to-r from-slate-900 to-slate-800" style={{
+                paddingTop: "2rem",
+                paddingLeft: "12rem",
                 gap: "2rem"
             }}>
                 {ProductoResponse && <ProductoImage productoJson={ProductoResponse} />}
-                <div style={{ display: "flex", flexGrow: "1", flexDirection: "column", gap: "2vh" }}>
+                <div style={{ display: "flex",
+                    flexGrow: "1",
+                    flexDirection: "column",
+                    gap: "2vh",
+                    minHeight: "95vh", }}>
                     {ProductoResponse && (
                         <>
                             <ProductoInfo productoJson={ProductoResponse} />
@@ -65,7 +69,7 @@ const ProductoVista = () => {
                                 cantidadQuery={cantidadActual}
                                 setCantidad={setCantidad}
                             />
-                            <div className="flex flex-row" style={{alignItems: "center", gap: ".5rem"}}>
+                            <div className="flex flex-row" style={{alignItems: "center", gap: ".5rem", marginLeft: "6vh"}}>
                                 <ProductoAgregarCarrito
                                     productoJson={ProductoResponse}
                                     cantidad={cantidad}
