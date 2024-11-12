@@ -1,21 +1,18 @@
-import axiosClient from "../config/axiosClient.js";
-import { useState, useEffect } from "react";
 import TablaProductos from "../Components/TablaProductos.jsx";
 import MyNavbar from "../Components/Navbar.jsx";
-import CrearProducto from "../Components/CrearProducto.jsx";
+import {useEffect} from "react";
 
 const Productos = () => {
+    useEffect(() => {
+        document.title = "Markap - Producto Categoria";
+    }, []);
+
     return (
         <div className="flex flex-col">
             <MyNavbar>
             </MyNavbar>
-
-            <div className="flex-1 flex flex-col gap-32 px-32 py-16">
-            <CrearProducto/>
-            <TablaProductos/>
-            </div>
-
-
+            <TablaProductos>
+            </TablaProductos>
         </div>
 
     )

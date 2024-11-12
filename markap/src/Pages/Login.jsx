@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
 import axiosClient from "../config/axiosClient.js";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import MyNavbar from "../Components/Navbar.jsx";
 
 const Login = () => {
@@ -9,6 +9,10 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+
+    useEffect(() => {
+        document.title = "Markap - Login";
+    }, []);
 
     const onSubmit = async (data) => {
         try {

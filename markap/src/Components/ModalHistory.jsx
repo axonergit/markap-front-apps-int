@@ -60,7 +60,7 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
                                 <p>${totalAmount?.toFixed(2)}</p>
                             </div>
                         </ModalBody>
-                        <ModalFooter>
+                        <ModalFooter style={{ marginTop: "-1rem" }}>
                             <Button color="danger" variant="light" onPress={onClose}>
                                 Cerrar
                             </Button>

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { DatePicker, Input, Button } from "@nextui-org/react";
 import { I18nProvider } from "@react-aria/i18n";
 import axiosClient from "../config/axiosClient.js";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import MyNavbar from "../Components/Navbar.jsx";
 const Register = () => {
     const { register, setValue, handleSubmit, watch, formState: { errors } } = useForm();
@@ -12,6 +12,10 @@ const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+
+    useEffect(() => {
+        document.title = "Markap - Registrar";
+    }, []);
 
     const onSubmit = async (data) => {
         try {

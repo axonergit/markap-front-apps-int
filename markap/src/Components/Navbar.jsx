@@ -3,6 +3,7 @@ import {jwtDecode} from "jwt-decode";
 import { fetchCarritoData } from "../Pages/Carrito.jsx";
 import {useEffect, useState} from "react";
 
+
 const MyNavbar = () => {
     const navigate = useNavigate();
 
@@ -97,7 +98,7 @@ const MyNavbar = () => {
                             <div className="w-10 rounded-full">
                                 <img
                                     alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"/>
+                                    src="https://akamai.sscdn.co/uploadfile/letras/fotos/5/9/1/b/591b070413cf1d9c34bc8528ee500268.jpg"/>
                             </div>
                         </div>
                         <ul
