@@ -63,7 +63,7 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
                                 <h4>Monto Total</h4>
                                 <p>${totalAmount?.toFixed(2)}</p>
                             </div>
-                            <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+                            <div style={{ display: "flex", justifyContent: "center", marginTop: ".2rem" }}>
                                 <Pagination
                                     total={itemsHistorial?.totalPages}
                                     initialPage={currentPage}

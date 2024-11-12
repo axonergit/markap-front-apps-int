@@ -8,6 +8,7 @@ import ProductoCantidad from "../Components/ProductoCantidad.jsx";
 import { useEffect, useState } from "react";
 import ProductoAgregarCarrito from "../Components/ProductoAgregarCarrito.jsx";
 import ProductoAgregarLike from "../Components/ProductoAgregarLike.jsx";
+import {Spinner} from "@nextui-org/react";
 
 const ProductoVista = () => {
     const { productId } = useParams();
@@ -20,7 +21,7 @@ const ProductoVista = () => {
             const response = await axiosClient.get(`/productos/${productId}`);
             return response.data;
         },
-        staleTime: 1000 * 60 * 2,
+        staleTime: 1000 * 5,
     });
 
     useEffect(() => {
@@ -42,8 +43,6 @@ const ProductoVista = () => {
         }
         fetchData();
     }, [productId]);
-
-    if (isLoading) return <p>Cargando datos del producto...</p>;
     if (error) return <p>Error al cargar los datos del producto.</p>;
 
     return (
@@ -52,35 +51,55 @@ const ProductoVista = () => {
             <div className="flex flex-row bg-gradient-to-r from-slate-900 to-slate-800" style={{
                 paddingTop: "2rem",
                 paddingLeft: "12rem",
-                gap: "2rem"
+                gap: "2rem",
+                minHeight: "95vh",
             }}>
-                {ProductoResponse && <ProductoImage productoJson={ProductoResponse} />}
-                <div style={{ display: "flex",
-                    flexGrow: "1",
-                    flexDirection: "column",
-                    gap: "2vh",
-                    minHeight: "95vh", }}>
-                    {ProductoResponse && (
-                        <>
-                            <ProductoInfo productoJson={ProductoResponse} />
-                            <ProductoCantidad
-                                productoJson={ProductoResponse}
-                                cantidad={cantidad}
-                                cantidadQuery={cantidadActual}
-                                setCantidad={setCantidad}
-                            />
-                            <div className="flex flex-row" style={{alignItems: "center", gap: ".5rem", marginLeft: "6vh"}}>
-                                <ProductoAgregarCarrito
+                {error && "No existe tal producto"}
+                {isLoading && <Spinner/>}
+                {ProductoResponse && (
+                    <>
+                    <ProductoImage productoJson={ProductoResponse} />
+                    <div style={{ display: "flex",
+                        flexGrow: "1",
+                        flexDirection: "column",
+                        gap: "2vh",
+                         }}>
+                        <ProductoInfo productoJson={ProductoResponse} />
+                        {ProductoResponse.stock ? (
+                            <>
+                                <ProductoCantidad
                                     productoJson={ProductoResponse}
                                     cantidad={cantidad}
+                                    cantidadQuery={cantidadActual}
                                     setCantidad={setCantidad}
                                 />
-                                <ProductoAgregarLike productoJson={ProductoResponse}/>
+                                <div className="flex flex-row" style={{
+                                    alignItems: "center",
+                                    gap: ".5rem",
+                                    marginLeft: "6vh"
+                                }}>
+                                    <ProductoAgregarCarrito
+                                        productoJson={ProductoResponse}
+                                        cantidad={cantidad}
+                                        setCantidad={setCantidad}
+                                    />
+                                    <ProductoAgregarLike productoJson={ProductoResponse} />
+                                </div>
+                            </>
+                        ) : (
+                            <div style={{
+                                display: "flex",
+                                alignItems: "center",
+                                paddingTop: "1rem",
+                                paddingLeft: "4rem",
+                                color: "white",
+                                fontWeight: "bold",
+                            }}>
+                                <p>NO HAY STOCK</p>
                             </div>
-
-                        </>
-                    )}
-                </div>
+                        )}
+                    </div>
+                    </>)}
             </div>
         </div>
     );
