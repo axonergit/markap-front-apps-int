@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 import PaginaError from "../Components/PaginaError.jsx";
 
 const CategoriaProductos = () => {
-  // Captura el ID de la categoría desde la URL
+ 
+  
   const { id, page } = useParams();
   const [currentPage, setCurrentPage] = useState(page ? parseInt(page - 1) : 0); // Establece la página inicial desde el parámetro 0
 
@@ -17,7 +18,7 @@ const CategoriaProductos = () => {
     document.title = "Markap - Producto Categorias";
   }, []);
 
-  // Realiza la consulta para obtener los datos de la categoría, incluyendo la página actual
+
   const { isLoading, error, data } = useQuery({
     queryKey: ['categoria', id, currentPage],
     queryFn: () =>
@@ -26,11 +27,11 @@ const CategoriaProductos = () => {
         .then((res) => res.data),
   });
 
-  // Muestra la UI para los diferentes estados
+
   if (isLoading) return <p>Cargando productos de la categoría...</p>;
 
   if (error) {
-    // Extrae detalles del error si están disponibles
+
     const errorMessage = error.response?.data?.message || "Error cargando los productos de la categoría."; 
     const statusCode = error.response?.status;
     
