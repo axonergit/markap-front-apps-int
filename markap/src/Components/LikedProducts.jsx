@@ -10,8 +10,7 @@ export default function LikedProducts() {
         queryFn: async () => {
             const response = await axiosClient.get('/productos/liked/');
             return response.data;
-        },
-        staleTime: 1000 * 60 * 2
+        }
     });
 
     // if (isLoading) return <span> Cargando Articulos Likeados... </span> ;

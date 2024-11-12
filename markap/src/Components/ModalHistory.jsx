@@ -1,23 +1,25 @@
 import {
-    Button, Link,
+    Button, Link, Pagination,
     Modal, ModalBody, ModalContent, ModalFooter, ModalHeader,
     Table, TableBody, TableCell, TableColumn, TableHeader, TableRow
 } from "@nextui-org/react";
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../config/axiosClient.js";
+import {useState} from "react";
 
 // eslint-disable-next-line react/prop-types
 export default function ModalHistory({ isOpen, onClose, carritoId }) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 5;
 
-    const {data: itemsHistorial, isLoading, error} = useQuery({
-        queryKey: ['ItemsHistorial', carritoId],
+    const { data: itemsHistorial, isLoading, error } = useQuery({
+        queryKey: ['ItemsHistorial', carritoId, currentPage],
         queryFn: async () => {
-            const response = await axiosClient.get(`/carrito/historial/${carritoId}`);
-            console.log(response.data);
+            const response = await axiosClient.get(`/carrito/historial/${carritoId}?pagina=${currentPage - 1}&size=${pageSize}`);
             return response.data;
         },
-        staleTime: 1000 * 60 * 2,
-        enabled: isOpen && !!carritoId
+        enabled: isOpen && !!carritoId,
+        keepPreviousData: true
     });
 
     const totalAmount = itemsHistorial?.content?.reduce((sum, item) => sum + (item.amount * item.product.precio), 0);
@@ -49,7 +51,7 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
                                                     <Link href={`../producto/${item.product.id}`}>{item.product.descripcion}</Link>
                                                 </TableCell>
                                                 <TableCell>{item.amount}</TableCell>
-                                                <TableCell>${item.amount * item.product.precio}</TableCell>
+                                                <TableCell>${(item.amount * item.product.precio).toFixed(2)}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
@@ -57,12 +59,20 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
                             ) : (
                                 !isLoading && <p>No se encontraron detalles.</p>
                             )}
-                            <div style={{paddingTop: '.2rem', textAlign: 'center'}}>
+                            <div style={{ paddingTop: '.2rem', textAlign: 'center' }}>
                                 <h4>Monto Total</h4>
                                 <p>${totalAmount?.toFixed(2)}</p>
                             </div>
+                            <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+                                <Pagination
+                                    total={itemsHistorial?.totalPages}
+                                    initialPage={currentPage}
+                                    onChange={(page) => setCurrentPage(page)}
+                                    showControls
+                                />
+                            </div>
                         </ModalBody>
-                        <ModalFooter style={{ marginTop: "-1rem" }}>
+                        <ModalFooter>
                             <Button color="danger" variant="light" onPress={onClose}>
                                 Cerrar
                             </Button>
