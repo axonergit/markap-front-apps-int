@@ -24,8 +24,8 @@ const ProductoVista = () => {
     });
 
     useEffect(() => {
-        document.title = `Markap - ${ProductoResponse.descripcion}`;
-    }, []);
+        document.title = `Markap - Producto`;
+    }, [ProductoResponse]);
 
     useEffect(() => {
         async function fetchData() {
