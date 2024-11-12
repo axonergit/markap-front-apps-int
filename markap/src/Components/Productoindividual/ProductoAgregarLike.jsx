@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axiosClient from "../../config/axiosClient.js";
+import {useNavigate} from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export default function ProductoAgregarLike({ productoJson }) {
     const queryClient = useQueryClient();
     const [isLiked, setIsLiked] = useState(false);
+    const token = localStorage.getItem("authToken")
+    const navigate = useNavigate();
 
     const { data: likedProducts } = useQuery({
         queryKey: ["likedProducts"],
@@ -50,10 +53,14 @@ export default function ProductoAgregarLike({ productoJson }) {
     });
 
     const handleLikeCambio = () => {
-        if (isLiked) {
-            removeLikeMutation.mutate();
+        if(token){
+            if (isLiked) {
+                removeLikeMutation.mutate();
+            } else {
+                addLikeMutation.mutate();
+            }
         } else {
-            addLikeMutation.mutate();
+            navigate("/login")
         }
     };
 
