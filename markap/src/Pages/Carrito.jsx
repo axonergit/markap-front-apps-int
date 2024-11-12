@@ -12,6 +12,10 @@ const CarritoItems = () => {
         fetchCarritoItems();
     }, []);
 
+    useEffect(() => {
+        document.title = "Markap - Carrito";
+    }, []);
+
     const fetchCarritoItems = async () => {
         try {
             const response = await axiosClient.get('/carrito/actual/items');

@@ -1,13 +1,16 @@
-import { } from '@nextui-org/react';
+import { useEffect } from 'react';
 import Navbar from "../Components/Navbar.jsx";
 import AboutMe from "../Components/AboutMe.jsx";
 import LikedProducts from "../Components/LikedProducts.jsx";
 import HistoryProducts from "../Components/HistoryProducts.jsx";
 
 const Me = () => {
-
+    useEffect(() => {
+        document.title = "Markap - Mi Perfil";
+    }, []);
     return (
         <>
+
             <Navbar/>
             <div className={"to-blue-500"} style={
                 {
