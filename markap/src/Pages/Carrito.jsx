@@ -2,6 +2,7 @@ import axiosClient from "../config/axiosClient.js";
 import {useEffect, useState} from "react";
 import Navbar from "../Components/Navbar.jsx";
 import ModalCarrito from "../Components/ModalCarrito.jsx";
+import {Link} from "react-router-dom";
 
 const Carrito = () => {
 
@@ -30,7 +31,7 @@ const Carrito = () => {
         try {
             let page = 0;
             let hayMasPaginas = true;
-            const size = 100;
+            const size = 25;
 
             while (hayMasPaginas) {
                 const response = await axiosClient.get(`/carrito/actual/items?page=${page}&size=${size}`);
@@ -151,11 +152,15 @@ const Carrito = () => {
                         {items.map((item) => (
                             <div key={item.id} className="card w-96 bg-base-100 shadow-xl flex flex-col justify-between">
                                 <button className="btn btn-sm btn-outline btn-error absolute top-4 right-4" onClick={() => handleEliminarItem(item.product.id)}>X</button>
-                                <figure className="flex-grow">
-                                    <img className="h-48 object-contain" src={`data:image/jpeg;base64,${item.product.imagen}`} alt={item.product.descripcion} />
-                                </figure>
+                                <Link to={`/producto/${item.product.id}`}>
+                                    <figure className="flex-grow">
+                                        <img className="h-48 object-contain" src={`data:image/jpeg;base64,${item.product.imagen}`} alt={item.product.descripcion} />
+                                    </figure>
+                                </Link>
                                 <div className="card-body flex flex-col justify-between">
-                                    <h2 className="card-title">{item.product.descripcion}</h2>
+                                    <Link to={`/producto/${item.product.id}`}>
+                                        <h2 className="card-title">{item.product.descripcion}</h2>
+                                    </Link>
                                     <div className="flex justify-between items-center mb-2">
                                         <button className="btn btn-sm btn-outline btn-error" onClick={() => handleRemoverItem(item.product.id)}>-</button>
                                         <span className="text-sm font-bold">{item.amount}</span>
