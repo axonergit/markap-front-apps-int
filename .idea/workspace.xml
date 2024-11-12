@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88bc2297-92c9-4a86-8f98-d17973090df4" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markap/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/markap/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/markap/package.json" afterDir="false" />
@@ -12,6 +13,11 @@
       <change beforePath="$PROJECT_DIR$/markap/src/Components/ProductoAgregarCarrito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Components/ProductoAgregarCarrito.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markap/src/Components/ProductoCantidad.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Components/ProductoCantidad.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markap/src/Pages/ProductoVista.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Pages/ProductoVista.jsx" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/markap/src/Components/ModalCarrito.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/src/Pages/Carrito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Pages/Carrito.jsx" afterDir="false" />
+>>>>>>> 9ceaae93f0e206272048226a69036cc6482bc9b1
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +40,43 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "axonergit"
+  }
+}]]></component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="carrito2" />
+                    <option name="lastUsedInstant" value="1731375831" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1731375830" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/axonergit/markap-front-apps-int.git",
+    "accountId": "b4be62ce-6bd0-4cc9-b971-d138cdea21ed"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -50,18 +93,36 @@
     "Node.js.App.js.executor": "Run",
     "Node.js.App.jsx.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
     "git-widget-placeholder": "main",
+=======
+    "git-widget-placeholder": "carrito2",
+    "ignore_missing_gitignore": "true",
+>>>>>>> 9ceaae93f0e206272048226a69036cc6482bc9b1
     "last_opened_file_path": "C:/Users/Sebye/Documents/Codigo/MisAndanzasConDino/DISz Web",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Users/Rorschach/AppData/Roaming/JetBrains/WebStorm2024.2/node/versions/22.11.0/node",
     "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
     "npm.start.executor": "Run",
+    "settings.editor.selected.configurable": "settings.nodejs",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Sebye\WebstormProjects\markap-front-apps-int\markap\src\Components" />
@@ -70,13 +131,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/markap/package.json" />
       <command value="run" />
       <scripts>
         <script value="dev" />
       </scripts>
-      <node-interpreter value="project" />
+      <node-interpreter value="$APPLICATION_CONFIG_DIR$/node/versions/22.11.0/node" />
       <envs />
       <method v="2" />
     </configuration>
@@ -84,7 +145,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23339.15" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
       </set>
     </attachedChunks>
   </component>
@@ -108,6 +169,7 @@
       <workItem from="1730578689444" duration="54000" />
       <workItem from="1730851766455" duration="5500000" />
       <workItem from="1731191038786" duration="114000" />
+      <workItem from="1731375304374" duration="18935000" />
     </task>
     <servers />
   </component>
