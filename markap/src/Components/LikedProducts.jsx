@@ -25,7 +25,7 @@ export default function LikedProducts() {
                         Articulos Favoritos
                     </div>
                 }>
-                    <ProductsScript products={likedProducts} />
+                    <ProductsScript productosResponse={likedProducts} />
                 </AccordionItem>
             </Accordion>
         </div>

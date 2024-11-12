@@ -2,7 +2,7 @@ import React from "react";
 import {Button} from "@nextui-org/react";
 
 // eslint-disable-next-line react/prop-types
-export default function ProductoAgregar( { productoJson, cantidad, cantidadQuery, setCantidad } ) {
+export default function ProductoCantidad({ productoJson, cantidad, cantidadQuery, setCantidad } ) {
 
     const maxAmount = productoJson.stock;
 
