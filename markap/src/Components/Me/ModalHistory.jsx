@@ -10,6 +10,7 @@ import {useState} from "react";
 // eslint-disable-next-line react/prop-types
 export default function ModalHistory({ isOpen, onClose, carritoId }) {
     const [currentPage, setCurrentPage] = useState(1);
+    const [allCost, setAllCost] = useState(0);
     const pageSize = 5;
 
     const { data: itemsHistorial, isLoading, error } = useQuery({
@@ -22,7 +23,15 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
         keepPreviousData: true
     });
 
-    const totalAmount = itemsHistorial?.content?.reduce((sum, item) => sum + (item.amount * item.product.precio), 0);
+    const { data: data, _isLoading, _error } = useQuery({
+        queryKey: ['totalCost', carritoId, 1],
+        queryFn: async () => {
+            const response = await axiosClient.get(`/carrito/historial/${carritoId}?pagina=${currentPage - 1}&size=25`);
+            setAllCost(response.data?.content?.reduce((sum, item) => sum + (item.amount * item.product.precio), 0));
+        },
+        enabled: isOpen && !!carritoId,
+        keepPreviousData: true
+    });
 
     return (
         <Modal
@@ -61,7 +70,7 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
                             )}
                             <div style={{ paddingTop: '.2rem', textAlign: 'center' }}>
                                 <h4>Monto Total</h4>
-                                <p>${totalAmount?.toFixed(2)}</p>
+                                <p>${allCost?.toFixed(2)}</p>
                             </div>
                             <div style={{ display: "flex", justifyContent: "center", marginTop: ".2rem" }}>
                                 <Pagination
