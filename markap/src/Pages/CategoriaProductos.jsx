@@ -11,7 +11,7 @@ import PaginaError from "../Components/PaginaError.jsx";
 const CategoriaProductos = () => {
   // Captura el ID de la categoría desde la URL
   const { id, page } = useParams();
-  const [currentPage, setCurrentPage] = useState(page ? parseInt(page) : 0); // Establece la página inicial desde el parámetro o 1
+  const [currentPage, setCurrentPage] = useState(page ? parseInt(page - 1) : 0); // Establece la página inicial desde el parámetro 0
 
   useEffect(() => {
     document.title = "Markap - Producto Categorias";
@@ -83,8 +83,8 @@ const CategoriaProductos = () => {
           <div className="py-10">
             <Pagination 
               categoryId={id} 
-              currentPage={currentPage} 
-              onPageChange={setCurrentPage}
+              currentPage={currentPage + 1} 
+              onPageChange={(page) => setCurrentPage(page - 1)}
               totalPages={data.totalPages}
             />
           </div>
