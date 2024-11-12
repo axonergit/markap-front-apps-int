@@ -1,8 +1,10 @@
 import axiosClient from "../config/axiosClient.js";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import Navbar from "../Components/Navbar.jsx";
 import ModalCarrito from "../Components/ModalCarrito.jsx";
 import {Link} from "react-router-dom";
+import {AuthContext} from "../context/AuthContext.jsx";
+import {jwtDecode} from "jwt-decode";
 
 const Carrito = () => {
 
@@ -12,9 +14,12 @@ const Carrito = () => {
     const [precioTotal, setPrecioTotal] = useState(0.0);
     const [modalVisible, setModalVisible] = useState(false);
     const [modalMensaje, setModalMensaje] = useState('');
+    const [token, setToken] = useState('');
 
     useEffect(() => {
         fetchCarritoItems();
+        const updatedToken = localStorage.getItem("authToken");
+        setToken(updatedToken);
     }, []);
 
     useEffect(() => {
@@ -111,6 +116,14 @@ const Carrito = () => {
             await fetchCarritoItems();
         } catch (error) {
             console.error('Error eliminando item:', error);
+        }
+    }
+
+    if (token) {
+        const decoded = jwtDecode(token);
+        if (decoded.exp * 1000 < Date.now()) {
+            localStorage.removeItem("authToken");
+            window.location.href = '/';
         }
     }
 
