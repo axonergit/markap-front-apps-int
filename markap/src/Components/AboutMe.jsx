@@ -18,28 +18,31 @@
                     src="https://akamai.sscdn.co/uploadfile/letras/fotos/5/9/1/b/591b070413cf1d9c34bc8528ee500268.jpg"
                     className="w-80 h-80 text-large"
                 />
-                {isLoading && (
-                    <div style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        margin: "3vh"
-                    }}>
-                        <CircularProgress label="Cargando..." />
-                    </div>
-                )}
-                {userProfile && (
-                    <Accordion>
-                        <AccordionItem className="w-80 h-190" key="1" subtitle="Ver Informacion"
-                                       title={userProfile.nombreCompleto}>
-                            email: {userProfile.email}<br />
-                            nacimiento: {userProfile.birthDate}
-                        </AccordionItem>
-                    </Accordion>
-                )}
-                {error && (
-                    <p>Error al cargar el perfil del usuario.</p>
-                )}
+                <div className="bg-neutral-content"
+                     style={{marginTop: "1em", borderRadius: "8px"}}>
+                    {isLoading && (
+                        <div style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            margin: "3vh"
+                        }}>
+                            <CircularProgress label="Cargando..." />
+                        </div>
+                    )}
+                    {userProfile && (
+                        <Accordion>
+                            <AccordionItem className="w-80 h-190" key="1" subtitle="Ver Informacion"
+                                           title={userProfile.nombreCompleto}>
+                                email: {userProfile.email}<br />
+                                nacimiento: {userProfile.birthDate}
+                            </AccordionItem>
+                        </Accordion>
+                    )}
+                    {error && (
+                        <p>Error al cargar el perfil del usuario.</p>
+                    )}
+                </div>
             </div>
         );
     }

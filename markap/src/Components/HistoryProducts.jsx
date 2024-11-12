@@ -17,7 +17,7 @@ export default function HistoryProducts() {
     return (
         <div className="history-products" style={{ position: "relative" }}>
             <Accordion variant="splitted">
-                <AccordionItem key="1" title={
+                <AccordionItem key="1" className="bg-neutral-content" title={
                     <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                         Historial de Compras
                     </div>

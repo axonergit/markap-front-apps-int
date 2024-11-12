@@ -20,7 +20,7 @@ export default function LikedProducts() {
     return (
         <div className="liked-products" style={{ position: "sticky" }}>
             <Accordion variant="splitted">
-                <AccordionItem key="1" title={
+                <AccordionItem className="bg-neutral-content" key="1" title={
                     <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                         Articulos Favoritos
                     </div>
