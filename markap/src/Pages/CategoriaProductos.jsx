@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axiosClient from "../config/axiosClient.js";
-import MyNavbar from "./Navbar.jsx";
-import Stars from "./Stars.jsx";
-import Pagination from "./Pagination.jsx";
+import MyNavbar from "../Components/Navbar.jsx";
+import Stars from "../Components/Stars.jsx";
+import Pagination from "../Components/Pagination.jsx";
 import { useState } from "react";
 import { Link } from "react-router-dom"; 
-import PaginaError from "./PaginaError.jsx";
+import PaginaError from "../Components/PaginaError.jsx";
 
 const CategoriaProductos = () => {
   // Captura el ID de la categoría desde la URL
@@ -44,7 +44,7 @@ const CategoriaProductos = () => {
     <>
     <div>
       <MyNavbar />
-      <div className="w-full min-h-screen bg-gradient-to-l from-amber-400 to-red-300 flex items-center justify-center py-14">
+      <div className="w-full min-h-screen bg-gradient-to-r from-slate-900 to-slate-800 flex items-center justify-center py-14">
         <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg py-5">
           <p className="text-lg mb-4">{"Productos de la categoría"}</p>
 

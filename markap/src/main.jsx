@@ -9,7 +9,7 @@ import Register from "./Pages/Register.jsx";
 import Me from "./Pages/Me.jsx";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import Categorias from './Components/Landing/Categorias.jsx';
-import CategoriaProductos from './Components/CategoriaProductos.jsx';
+import CategoriaProductos from './Pages/CategoriaProductos.jsx';
 import Carrito from "./Pages/Carrito.jsx";
 import Productos from "./Pages/Productos.jsx";
 import { AuthProvider } from './context/AuthContext.jsx';
@@ -22,7 +22,7 @@ const router = createBrowserRouter(
         {path: '/register', element: <Register/>},
         {path: '/me', element: <Me/>},
         {path: '/categorias', element: <Categorias/>}, // Ruta para listar todas las categorías
-        {path: '/categorias/:id', element: <CategoriaProductos/>}, // Ruta para los detalles de cada categoría
+        {path: '/productos/categoria/:id', element: <CategoriaProductos/>}, // Ruta para los detalles de cada categoría
         {path: '/admin/productos', element: <Productos />}, //Ruta para ver los productos creados
         { path: '/carrito', element: <Carrito />},  // Ruta carrito
     ]
