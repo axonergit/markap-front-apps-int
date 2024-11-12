@@ -13,6 +13,7 @@ export default function VisitadosRecientemente() {
 
   const { isAuthenticated } = useContext(AuthContext);
 
+  //ver si usar
     const settings = {
       dots: true,
       infinite: true,

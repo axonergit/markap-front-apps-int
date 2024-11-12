@@ -35,6 +35,7 @@ export default function ProductoInfo( { productoJson } ) {
                 </Chip>
             </h2>
             <h6 style={{fontSize: ".8rem", fontWeight: "bold"}}>Vendedor: <Link>{productoJson.nombreUserVendedor}</Link></h6>
+            <h6 style={{fontSize: ".8rem", fontWeight: "bold"}}>Stock: {productoJson.stock}</h6>
         </div>
     )
 }
