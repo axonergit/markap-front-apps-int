@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88bc2297-92c9-4a86-8f98-d17973090df4" name="Changes" comment="" />
+    <list default="true" id="88bc2297-92c9-4a86-8f98-d17973090df4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/src/Components/Me/ModalCarrito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Components/ModalCarrito.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markap/src/Pages/Carrito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/markap/src/Pages/Carrito.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +39,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/axonergit/markap-front-apps-int.git&quot;,
-    &quot;accountId&quot;: &quot;eaf0c53c-b856-4441-a106-5a4ea4efb292&quot;
+    &quot;accountId&quot;: &quot;b4be62ce-6bd0-4cc9-b971-d138cdea21ed&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -54,17 +58,33 @@
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.jsx.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Sebye/Documents/Codigo/MisAndanzasConDino/DISz Web&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/Rorschach/AppData/Roaming/JetBrains/WebStorm2024.2/node/versions/22.11.0/node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Sebye\WebstormProjects\markap-front-apps-int\markap\src\Components" />
@@ -73,13 +93,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/markap/package.json" />
       <command value="run" />
       <scripts>
         <script value="dev" />
       </scripts>
-      <node-interpreter value="project" />
+      <node-interpreter value="$APPLICATION_CONFIG_DIR$/node/versions/22.11.0/node" />
       <envs />
       <method v="2" />
     </configuration>
@@ -87,7 +107,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23339.15" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
       </set>
     </attachedChunks>
   </component>
@@ -113,10 +133,24 @@
       <workItem from="1731191038786" duration="114000" />
       <workItem from="1731425211847" duration="412000" />
       <workItem from="1731425792737" duration="7108000" />
+      <workItem from="1731449365072" duration="3039000" />
+      <workItem from="1731532817506" duration="6000" />
+      <workItem from="1731799026665" duration="2058000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
