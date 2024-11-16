@@ -21,18 +21,18 @@ const Me = () => {
         <>
 
             <Navbar/>
-            <div className={"bg-gradient-to-r from-slate-900 to-slate-800"}
+            <div data-theme="retro" className="h-screen"
                  style={{
                     padding: "2vh",
                     display: "flex",
                     justifyContent: "start",
                     flexDirection: "row",
-                    minHeight: "100vh",
                 }}>
                 <div>
-                    <AboutMe />
+                    <AboutMe  />
                 </div>
-                <div style={
+                <div
+                    style={
                     {
                         flexGrow: "1",
                         display: "flex",

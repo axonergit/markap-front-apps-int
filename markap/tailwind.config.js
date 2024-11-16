@@ -12,6 +12,9 @@ export default {
   theme: {
     extend: {},
   },
+  daisyui: {
+    themes: ["retro"]
+  },
   darkMode: "class",
   plugins: [nextui(),require("daisyui"), require("@tailwindcss/line-clamp")]
 }
