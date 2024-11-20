@@ -1,17 +1,34 @@
 import {useQuery} from '@tanstack/react-query';
 import axiosClient from "../../config/axiosClient.js";
 import { Link } from "react-router-dom"; 
+import { useNavigate } from 'react-router-dom';
 
 export default function Destacados() {
+    const navigate = useNavigate(); // Crear la instancia de navigate
 
-    const {isLoading, error, data} = useQuery({
+    const {isLoading, error, data, refetch} = useQuery({
         queryKey: ['Destacados'],
         queryFn: () =>
             axiosClient.get("/productos/destacados").then((res) => res.data),
+        retry: 1,
     });
 
-    if (isLoading) return 'Loading...';
-    if (error) return 'Error cargando productos destacados';
+    if (isLoading) return     (
+        <div className="flex justify-center items-center">
+            <span className="loading loading-ball loading-lg"></span>
+        </div>);
+
+    if (error) return (
+        <div className="text-red-500 text-center mt-2">
+            <p>Error cargando productos destacados</p>
+            <button 
+                onClick={() => refetch()}
+                className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Reintentar
+            </button>
+        </div>
+    );
 
     return (
         
