@@ -1,7 +1,7 @@
 import axiosClient from "../config/axiosClient.js";
 import {useContext, useEffect, useState} from "react";
 import Navbar from "../Components/Navbar.jsx";
-import ModalCarrito from "../Components/Me/ModalCarrito.jsx";
+import ModalCarrito from "../Components/ModalCarrito.jsx";
 import {Link} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext.jsx";
 import {jwtDecode} from "jwt-decode";
@@ -49,8 +49,14 @@ const Carrito = () => {
             setItems(allItems);
             setLoading(false);
         } catch (error) {
-            setError('Carrito vacio.');
-            setLoading(false);
+            if(error.response.status === 404) {
+                setError('Carrito vacio.');
+                setLoading(false);
+            } else {
+                setError('Ocurrio un error, intentelo mas tarde');
+                setLoading(false);
+            }
+
         }
     };
 
@@ -60,7 +66,6 @@ const Carrito = () => {
             if (response.data.carrito.paymentStatus) {
                 setModalMensaje('Gracias por su compra');
                 setModalVisible(true);
-                window.location.href = '/';
             } else {
                 setModalMensaje('Falta de stock, se ajusta cantidad');
                 setModalVisible(true);
@@ -191,7 +196,9 @@ const Carrito = () => {
                 </button>
                 <ModalCarrito
                     visible={modalVisible}
-                    cerado={() => setModalVisible(false)}
+                    cerado={() => {setModalVisible(false)
+                                        window.location.href = '/'}
+                    }
                     mensaje={modalMensaje}
                 />
             </div>
