@@ -45,10 +45,11 @@ export default function VisitadosRecientemente() {
       ]
     };
   
-    const { isLoading, error, data } = useQuery({
+    const { isLoading, error, data, refetch } = useQuery({
       queryKey: ['Visitados'],
       queryFn: () => axiosClient.get("/productos/visited/0").then(res => res.data),
       enabled: isAuthenticated,
+      retry: 1,
     });
   
 
@@ -56,9 +57,28 @@ export default function VisitadosRecientemente() {
       return <></>
     }
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error cargando productos visitados recientemente</div>;
+    if (isLoading) return     (
+      <div className="flex justify-center items-center">
+          <span className="loading loading-ball loading-lg"></span>
+      </div>);
+
+    if (error) return (
+      <div className="text-red-500 text-center mt-2">
+          <p>Error cargando productos visitados recientemente</p>
+          <button 
+              onClick={() => refetch()}
+              className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+              Reintentar
+          </button>
+      </div>
+  );
+
+
+
   console.log(data)
+
+
     return (
 <div className= "h-full flex justify-center items-center">
     <div className="w-full h-1/2 flex items-center justify-center py-14">
