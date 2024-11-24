@@ -11,7 +11,7 @@ export default function ProductoImage( {productoJson: productoJson} ) {
             }}
             shadow="none"
             alt={productoJson.id}
-            className="object-contain h-[500px] w-[500px]"
+            className="object-contain h-[500px] w-[500px] border-4 border-base-300"
             src={productoJson.imagen}
         />
     )

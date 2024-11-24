@@ -48,7 +48,7 @@ const MyNavbar = () => {
     // Renderizado condicional según la autenticación
     if (!token) {
         return (
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-200 border-5 border-base-300 border-t-0 border-l-0 border-r-0">
                 <div className="flex-1">
                     <Link to="/" className="btn btn-ghost text-xl">
                         Markap
@@ -64,13 +64,13 @@ const MyNavbar = () => {
         );
     } else {
         return (
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-200 border-5 border-base-300 border-t-0 border-l-0 border-r-0">
                 <div className="flex-1">
                     <Link to="/" className="btn btn-ghost text-xl">
                         Markap
                     </Link>
                 </div>
-                <div className="flex-none">
+                <div className="flex-none space-x-3">
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">

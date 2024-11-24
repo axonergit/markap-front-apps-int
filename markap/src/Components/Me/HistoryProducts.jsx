@@ -1,7 +1,7 @@
 import axiosClient from "../../config/axiosClient.js";
 import { useQuery } from '@tanstack/react-query';
 import {Accordion, AccordionItem} from '@nextui-org/react';
-import HistoryScript from "./HistoryScript.jsx";
+import ArrayHistory from "./ArrayHistory.jsx";
 
 export default function HistoryProducts() {
 
@@ -17,14 +17,14 @@ export default function HistoryProducts() {
     console.log(comprasHistorial)
 
     return (
-        <div className="history-products" style={{ position: "relative" }}>
+        <div style={{ position: "relative" }}>
             <Accordion variant="splitted">
-                <AccordionItem key="1" className="bg-neutral-content" title={
+                <AccordionItem key="1" className="border-3 border-base-300 bg-white rounded-2xl" title={
                     <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                         Historial de Compras
                     </div>
                 }>
-                    <HistoryScript compras={comprasHistorial} />
+                    <ArrayHistory compras={comprasHistorial} />
                 </AccordionItem>
             </Accordion>
         </div>

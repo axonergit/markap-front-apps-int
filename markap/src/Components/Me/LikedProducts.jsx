@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../../config/axiosClient.js";
-import ProductsScript from "../ProductsScript.jsx";
+import ArrayProducts from "./ArrayProducts.jsx";
 import {Accordion, AccordionItem} from "@nextui-org/react";
 
 export default function LikedProducts() {
@@ -19,12 +19,12 @@ export default function LikedProducts() {
     return (
         <div className="liked-products" style={{ position: "sticky" }}>
             <Accordion variant="splitted">
-                <AccordionItem className="bg-neutral-content" key="1" title={
+                <AccordionItem className="border-3 border-base-300 bg-white rounded-2xl" key="1" title={
                     <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                         Articulos Favoritos
                     </div>
                 }>
-                    <ProductsScript productosResponse={likedProducts} />
+                    <ArrayProducts productosResponse={likedProducts} />
                 </AccordionItem>
             </Accordion>
         </div>
