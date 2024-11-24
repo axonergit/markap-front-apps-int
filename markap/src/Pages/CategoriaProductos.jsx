@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import PaginaError from "../Components/PaginaError.jsx";
 import { useNavigate } from 'react-router-dom';
 
+
+
 const CategoriaProductos = () => {
   
   const navigate = useNavigate();
@@ -31,9 +33,13 @@ const CategoriaProductos = () => {
 
 
   if (isLoading) return (
+    <>
+    <MyNavbar/>
     <div className="flex justify-center items-center h-screen">
         <span className="loading loading-ball loading-lg"></span>
-    </div>);
+    </div>
+    </>
+    );
 
 
   if (error) return (

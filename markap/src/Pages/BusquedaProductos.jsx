@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
+
 const BusquedaProductos = () => {
 
   const navigate = useNavigate(); // Crear la instancia de navigate
@@ -32,9 +33,13 @@ const BusquedaProductos = () => {
 
 
   if (isLoading) return (
+    <>
+    <MyNavbar/>
     <div className="flex justify-center items-center h-screen">
         <span className="loading loading-ball loading-lg"></span>
-    </div>);
+    </div>
+    </>
+    );
 
   if (error) return (
     <div className="flex flex-col justify-center items-center h-screen text-red-500  mt-2">

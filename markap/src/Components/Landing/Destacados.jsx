@@ -1,10 +1,9 @@
 import {useQuery} from '@tanstack/react-query';
 import axiosClient from "../../config/axiosClient.js";
 import { Link } from "react-router-dom"; 
-import { useNavigate } from 'react-router-dom';
+
 
 export default function Destacados() {
-    const navigate = useNavigate(); // Crear la instancia de navigate
 
     const {isLoading, error, data, refetch} = useQuery({
         queryKey: ['Destacados'],
