@@ -7,6 +7,8 @@ import PaginaError from "../Components/PaginaError.jsx";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
+
 
 
 const BusquedaProductos = () => {
@@ -103,7 +105,6 @@ const BusquedaProductos = () => {
           
           <div className="py-10">
             <Pagination 
-              categoryId={id} 
               currentPage={currentPage + 1} 
               onPageChange={(page) => setCurrentPage(page - 1)}
               totalPages={data.totalPages}
