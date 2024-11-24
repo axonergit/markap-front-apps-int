@@ -45,7 +45,7 @@ const BusquedaProductos = () => {
 
   if (error) return (
     <div className="flex flex-col justify-center items-center h-screen text-red-500  mt-2">
-        <p>Error cargando productos destacados</p>
+        <p>Error cargando productos buscados</p>
         <button 
             onClick={() => refetch()}
             className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -68,7 +68,7 @@ const BusquedaProductos = () => {
       <MyNavbar />
       <div className="w-full min-h-screen flex items-center justify-center py-14">
         <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg py-5">
-          <p className="text-lg mb-4">{"Gestion de la categoría"}</p>
+          <p className="text-lg mb-4"> Productos encontrados para "{nombre}"</p>
 
           {data.content && data.content.length > 0 ? (
            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
