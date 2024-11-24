@@ -1,27 +1,38 @@
-# Etapa 1: Construcción de la aplicación
-FROM node:18 as builder
+# Usamos una imagen base de Node.js para la etapa de construcción
+FROM node:16 AS build
 
-# Configuración de directorio de trabajo
-WORKDIR /markap
+# Establecemos el directorio de trabajo dentro del contenedor
+WORKDIR /app
 
-# Copiar archivos de la aplicación
-COPY package.json package-lock.json ./
+# Copiamos el package.json y package-lock.json desde markap
+COPY markap/package.json markap/package-lock.json ./
+
+# Instalamos las dependencias
 RUN npm install
 
-# Copiar el resto del código fuente
-COPY . .
+# Depuración: Listamos los archivos en el directorio /app
+RUN ls -al /app
 
-# Construir la aplicación
-RUN npm run build
+# Copiamos todo el código fuente desde la carpeta markap al contenedor
+COPY markap /app
 
-# Etapa 2: Servir la aplicación con nginx
+# Depuración: Listamos los archivos en /app después de la copia
+RUN ls -al /app
+
+# Limpiamos la caché de npm (opcional)
+RUN npm cache clean --force
+
+# Ejecutamos el build de Vite en el directorio correcto
+RUN npm run build --prefix /app/
+
+# Usamos una imagen más ligera para producción (Nginx)
 FROM nginx:alpine
 
-# Copiar archivos generados al directorio de nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Copiamos los archivos construidos desde la imagen anterior
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Exponer el puerto 80 para nginx
+# Exponemos el puerto 80 para que nginx pueda servir los archivos
 EXPOSE 80
 
-# Comando para iniciar nginx
+# Comando para ejecutar nginx
 CMD ["nginx", "-g", "daemon off;"]
