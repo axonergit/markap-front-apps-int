@@ -40,7 +40,7 @@ const Login = () => {
     return (
         <>
         <MyNavbar></MyNavbar>
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 via-gray-900 to-black p-4">
+        <div className="p-[8rem] flex items-center justify-center to-black p-4">
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col w-full max-w-lg bg-white/90 p-10 rounded-3xl shadow-2xl backdrop-blur-lg gap-8 transition-transform transform hover:scale-105"
@@ -91,9 +91,8 @@ const Login = () => {
 
                 <Button
                     type="submit"
-                    color="primary"
                     isLoading={isLoading}
-                    className="mt-6 w-full py-3 rounded-lg text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-300 ease-in-out"
+                    className="btn btn-primary bg-bg-primary mt-6 w-full py-3 rounded-lg text-lg font-semibold text-white transition-colors duration-300 ease-in-out"
                 >
                     Iniciar sesión
                 </Button>

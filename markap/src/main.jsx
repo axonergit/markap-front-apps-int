@@ -13,7 +13,6 @@ import CategoriaProductos from './Pages/CategoriaProductos.jsx';
 import Carrito from "./Pages/Carrito.jsx";
 import Gestion from "./Pages/Gestion.jsx";
 import { AuthProvider } from './context/AuthContext.jsx';
-import productoVista from "./Pages/ProductoIndividual.jsx";
 import ProductoIndividual from "./Pages/ProductoIndividual.jsx";
 import BusquedaProductos from "./Pages/BusquedaProductos.jsx";
 
