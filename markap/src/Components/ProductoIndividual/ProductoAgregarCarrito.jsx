@@ -39,10 +39,9 @@ export default function ProductoAgregarCarrito({productoJson, cantidad, setCanti
 
     const handleAgregarAlCarrito = () => {
         if (token){
-        if (cantidad > 0) {
-            agregarAlCarrito.mutate({productId: productoJson.id, amount: cantidad});
-        }}
-        else {
+            if (cantidad > 0)
+                agregarAlCarrito.mutate({productId: productoJson.id, amount: cantidad});
+        } else {
             navigate("/login")
         }
     };
@@ -50,10 +49,8 @@ export default function ProductoAgregarCarrito({productoJson, cantidad, setCanti
     return (
         <>
             <Button
-                className="w-[260px] h-[60px]"
+                className="w-[260px] h-[60px] btn btn-primary btn-lg bg-white"
                 style={{fontSize: "1.2rem", fontWeight: "bold"}}
-                color="primary"
-                size="lg"
                 onClick={handleAgregarAlCarrito}
                 disabled={cantidad === 0}
             >
