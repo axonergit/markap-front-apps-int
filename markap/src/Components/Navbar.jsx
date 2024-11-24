@@ -1,8 +1,7 @@
-import {Link, useNavigate} from "react-router-dom"; // Importa Link y useNavigate de React Router
-import {jwtDecode} from "jwt-decode";
+import { Link, useNavigate } from "react-router-dom"; // Importa Link y useNavigate de React Router
+import { jwtDecode } from "jwt-decode";
 import { fetchCarritoData } from "../Pages/Carrito.jsx";
-import {useEffect, useState} from "react";
-
+import { useEffect, useState } from "react";
 
 const MyNavbar = () => {
     const navigate = useNavigate();
@@ -13,28 +12,40 @@ const MyNavbar = () => {
         window.location.reload(); // Recarga la página
     };
 
-    // constantes de informacion de carrito
+    // Constantes de información del carrito
     const [cantidadItems, setCantidadItems] = useState(0);
     const [subtotal, setSubtotal] = useState(0.0);
 
-    // carga de info de carrito
-    useEffect(() => {
-        const loadCarritoData = async () => {
-            const { cantidadItems, subtotal } = await fetchCarritoData();
-            setCantidadItems(cantidadItems);
-            setSubtotal(subtotal);
-        };
-
-        loadCarritoData();
-    }, []);
-
-    let authorities = []
-
+    let authorities = [];
     const token = localStorage.getItem("authToken");
 
+    // Validar si hay un token válido
     if (token) {
-        authorities = jwtDecode(token).authorities || [];
+        try {
+            authorities = jwtDecode(token).authorities || [];
+        } catch (error) {
+            console.error("Error al decodificar el token:", error);
+        }
     }
+
+    // Cargar datos del carrito si está logeado
+    useEffect(() => {
+        if (token) { // Solo ejecuta si hay un token
+            const loadCarritoData = async () => {
+                try {
+                    const { cantidadItems, subtotal } = await fetchCarritoData();
+                    setCantidadItems(cantidadItems);
+                    setSubtotal(subtotal);
+                } catch (error) {
+                    console.error("Error al cargar los datos del carrito:", error);
+                }
+            };
+
+            loadCarritoData();
+        }
+    }, [token]);
+
+    // Renderizado condicional según la autenticación
     if (!token) {
         return (
             <div className="navbar bg-base-100">
@@ -45,7 +56,7 @@ const MyNavbar = () => {
                 </div>
                 <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
-                        <li><Link to="/login">Iniciar Sesion</Link></li>
+                        <li><Link to="/login">Iniciar Sesión</Link></li>
                         <li className="font-bold"><Link to="/register">Registrarse</Link></li>
                     </ul>
                 </div>
@@ -55,9 +66,9 @@ const MyNavbar = () => {
         return (
             <div className="navbar bg-base-100">
                 <div className="flex-1">
-                <Link to="/" className="btn btn-ghost text-xl">
-                    Markap
-                </Link>
+                    <Link to="/" className="btn btn-ghost text-xl">
+                        Markap
+                    </Link>
                 </div>
                 <div className="flex-none">
                     <div className="dropdown dropdown-end">
@@ -75,8 +86,7 @@ const MyNavbar = () => {
                                         strokeWidth="2"
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                                 </svg>
-                                <span
-                                    className="badge badge-sm indicator-item">{cantidadItems}</span> {/*Aca es donde va la cantidad de items*/}
+                                <span className="badge badge-sm indicator-item">{cantidadItems}</span>
                             </div>
                         </div>
                         <div
@@ -108,12 +118,11 @@ const MyNavbar = () => {
                                 <Link to="/me">Mi perfil</Link>
                             </li>
                             { authorities.includes("ROLE_ADMIN") && (
-                                    <li>
-                                        <Link to="/admin/productos">Mis productos</Link>
-                                    </li>
+                                <li>
+                                    <Link to="/admin/productos">Mis productos</Link>
+                                </li>
                             )}
-
-                            <li onClick={handleLogout}><a>Cerrar Sesion</a></li>
+                            <li onClick={handleLogout}><a>Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </div>

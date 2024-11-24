@@ -13,6 +13,9 @@ export default function HistoryProducts() {
         },
     });
 
+
+    console.log(comprasHistorial)
+
     return (
         <div className="history-products" style={{ position: "relative" }}>
             <Accordion variant="splitted">
