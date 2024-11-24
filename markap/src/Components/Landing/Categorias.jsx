@@ -13,8 +13,6 @@ const Categorias = () => {
     if (isLoading) return 'Loading...';
     if (error) return 'Error cargando categorías';
 
-    console.log(data)
-
     return (
             <div className="w-full h-2/3 flex items-center justify-center ">
                 <ul className="w-11/12 max-w-6xl h-full grid gap-10 p-10 md:grid-cols-2 lg:grid-cols-4">
