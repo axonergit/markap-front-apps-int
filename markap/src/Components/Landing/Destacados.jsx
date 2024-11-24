@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Image} from "@nextui-org/react";
 
+
 export default function Destacados() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const {isLoading, error, data} = useQuery({
+    const {isLoading, error, data, refetch} = useQuery({
         queryKey: ['Destacados'],
         queryFn: () =>
             axiosClient.get("/productos/destacados").then((res) => res.data),
+        retry: 1,
     });
 
-
+   
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -23,8 +25,25 @@ export default function Destacados() {
         return () => clearInterval(interval);
     }, [data]);
 
-    if (isLoading) return 'Loading...';
-    if (error) return 'Error cargando productos destacados';
+  
+  
+     if (isLoading) return     (
+        <div className="flex justify-center items-center">
+            <span className="loading loading-ball loading-lg"></span>
+        </div>);
+
+    if (error) return (
+        <div className="text-red-500 text-center mt-2">
+            <p>Error cargando productos destacados</p>
+            <button 
+                onClick={() => refetch()}
+                className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Reintentar
+            </button>
+        </div>
+    );
+  
 
     return (
         <div className="w-full flex flex-col items-center pt-4 pb-8">
