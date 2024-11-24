@@ -6,10 +6,12 @@ import Pagination from "../Components/Pagination.jsx";
 import {useEffect, useState} from "react";
 import { Link } from "react-router-dom"; 
 import PaginaError from "../Components/PaginaError.jsx";
+import { useNavigate } from 'react-router-dom';
 import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
 
 const CategoriaProductos = () => {
- 
+  
+  const navigate = useNavigate();
   
   const { id, page } = useParams();
   const [currentPage, setCurrentPage] = useState(page ? parseInt(page - 1) : 0); // Establece la página inicial desde el parámetro 0
@@ -19,7 +21,7 @@ const CategoriaProductos = () => {
   }, []);
 
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data, refetch } = useQuery({
     queryKey: ['categoria', id, currentPage],
     queryFn: () =>
       axiosClient
@@ -28,21 +30,34 @@ const CategoriaProductos = () => {
   });
 
 
-  if (isLoading) return <p>Cargando productos de la categoría...</p>;
+  if (isLoading) return (
+    <>
+    <MyNavbar/>
+    <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-ball loading-lg"></span>
+    </div>
+    </>
+    );
 
-  if (error) {
 
-    const errorMessage = error.response?.data?.message || "Error cargando los productos de la categoría."; 
-    const statusCode = error.response?.status;
-    
-    if(errorMessage != 500) { // rari
-      return <PaginaError statusCode={statusCode} message={errorMessage} />;
-    }
-    
-    else {
-      return <PaginaError statusCode={""} message={errorMessage} />;
-    }
-  }
+  if (error) return (
+    <div className="flex flex-col justify-center items-center h-screen text-red-500  mt-2">
+        <p>Error cargando productos destacados</p>
+        <button 
+            onClick={() => refetch()}
+            className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+            Reintentar
+        </button>
+
+        <button 
+            onClick={() => navigate("/")}
+            className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+            Volver a Home
+        </button>
+    </div>
+);
 
   return (
 
@@ -53,9 +68,11 @@ const CategoriaProductos = () => {
         <div className="w-full max-w-6xl bg-white p-6 rounded-lg shadow-lg py-5">
           <p className="text-lg mb-4">{"Gestion de la categoría"}</p>
 
-          {data.content && data.content.length > 0 ? (
+          {data && data.content ? (
+            <>
            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
            {data.content.map((producto) => (
+
                <Link
                    to={`/producto/${producto.id}`}
                    key={producto.id}
@@ -93,8 +110,13 @@ const CategoriaProductos = () => {
               onPageChange={(page) => setCurrentPage(page - 1)}
               totalPages={data.totalPages}
             />
-          </div>
-          
+            </div>
+          </>
+
+          ) : (
+            <p>No hay productos en esta categoría.</p>
+          )}
+        
         </div>
       </div>
     </div>

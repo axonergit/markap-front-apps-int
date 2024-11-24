@@ -6,8 +6,13 @@ import Pagination from "../Components/Pagination.jsx";
 import PaginaError from "../Components/PaginaError.jsx";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 const BusquedaProductos = () => {
+
+  const navigate = useNavigate(); // Crear la instancia de navigate
+
   const { nombre } = useParams();
   const [currentPage, setCurrentPage] = useState(0); // Maneja la paginación
 
@@ -15,7 +20,7 @@ const BusquedaProductos = () => {
     document.title = `Markap - Resultados para "${nombre}"`;
   }, [nombre]);
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data, refetch} = useQuery({
     queryKey: ['buscarProductos', nombre, currentPage],
     queryFn: () =>
       axiosClient.post('/productos/search', {
@@ -23,17 +28,37 @@ const BusquedaProductos = () => {
       }, {
         params: { page: currentPage, size: 10 }  
       }).then(res => res.data),
+      retry:0,
 });
 
 
-  if (isLoading) return <p>Cargando productos buscados...</p>;
+  if (isLoading) return (
+    <>
+    <MyNavbar/>
+    <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-ball loading-lg"></span>
+    </div>
+    </>
+    );
 
-  if (error) {
-    const errorMessage = error.response?.data?.message || "Error encontrando productos relacionados.";
-    const statusCode = error.response?.status;
+  if (error) return (
+    <div className="flex flex-col justify-center items-center h-screen text-red-500  mt-2">
+        <p>Error cargando productos destacados</p>
+        <button 
+            onClick={() => refetch()}
+            className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+            Reintentar
+        </button>
 
-    return <PaginaError statusCode={statusCode} message={errorMessage} />;
-  }
+        <button 
+            onClick={() => navigate("/")}
+            className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+            Volver a Home
+        </button>
+    </div>
+);
 
   return (
     <div>
