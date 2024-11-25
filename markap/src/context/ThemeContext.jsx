@@ -3,6 +3,8 @@ import React, { createContext, useState, useEffect } from "react";
 export const ThemeContext = createContext();
 
 const getInitialTheme = () => {
+  const storedTheme = localStorage.getItem("theme"); // Recuperar de localStorage
+  if (storedTheme) return storedTheme; 
   const root = document.getElementById("root");
   return root?.getAttribute("data-theme"); 
 };
@@ -13,6 +15,7 @@ const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const root = document.getElementById("root");
     root.setAttribute("data-theme", theme); 
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
