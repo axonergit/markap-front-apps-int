@@ -15,6 +15,7 @@ import Gestion from "./Pages/Gestion.jsx";
 import { AuthProvider } from './context/AuthContext.jsx';
 import ProductoIndividual from "./Pages/ProductoIndividual.jsx";
 import BusquedaProductos from "./Pages/BusquedaProductos.jsx";
+import ThemeProvider from './context/ThemeContext.jsx'; // Importa el proveedor de tema
 
 
 const router = createBrowserRouter(
@@ -37,12 +38,14 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <AuthProvider>
-            <NextUIProvider locale="es-ES">
-                <QueryClientProvider client={queryClient}>
-                    <RouterProvider router={router}></RouterProvider>
-                </QueryClientProvider>
-            </NextUIProvider>
-        </AuthProvider>
+        <ThemeProvider>
+            <AuthProvider>
+                <NextUIProvider locale="es-ES">
+                    <QueryClientProvider client={queryClient}>
+                        <RouterProvider router={router}></RouterProvider>
+                    </QueryClientProvider>
+                </NextUIProvider>
+            </AuthProvider>
+        </ThemeProvider>
     </StrictMode>
 );

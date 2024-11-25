@@ -28,7 +28,7 @@ const PriceFilter = ({ onFilter }) => {
                 />
                 <button
                     onClick={handleFilter}
-                    className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
+                    className="bg-blue-500 text-neutral-content p-2 rounded hover:bg-blue-700"
                 >
                     Apply Filter
                 </button>

@@ -49,7 +49,7 @@ export default function ProductoAgregarCarrito({productoJson, cantidad, setCanti
     return (
         <>
             <Button
-                className="w-[260px] h-[60px] btn btn-primary btn-lg bg-white"
+                className="w-[260px] h-[60px] btn btn-primary btn-lg bg-neutral-content"
                 style={{fontSize: "1.2rem", fontWeight: "bold"}}
                 onClick={handleAgregarAlCarrito}
                 disabled={cantidad === 0}
@@ -67,7 +67,7 @@ export default function ProductoAgregarCarrito({productoJson, cantidad, setCanti
                         bottom: "20px",
                         right: "20px",
                         padding: "0.8rem 1.2rem",
-                        color: "white",
+                        color: "neutral-content",
                         borderRadius: "8px",
                         display: "inline-flex",
                         alignItems: "center",
@@ -103,7 +103,7 @@ export default function ProductoAgregarCarrito({productoJson, cantidad, setCanti
                         bottom: "20px",
                         right: "20px",
                         padding: "0.8rem 1.2rem",
-                        color: "white",
+                        color: "neutral-content",
                         borderRadius: "8px",
                         display: "inline-flex",
                         alignItems: "center",

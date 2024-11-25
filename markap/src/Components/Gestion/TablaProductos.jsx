@@ -31,9 +31,9 @@ const TablaProductos = () => {
     if (error) return <div className="text-red-500">Error cargando productos: {error.message}</div>;
 
     return (
-        <Card className="w-full px-8 relative z-0">
+        <Card className="w-full px-8 relative z-0 bg-base-200">
             <CardHeader className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold">Productos</h1>
+                <h1 className="text-2xl font-bold text-accent-content">Productos</h1>
                 <CrearProducto />
             </CardHeader>
             <CardBody>

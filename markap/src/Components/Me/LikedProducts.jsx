@@ -17,9 +17,9 @@ export default function LikedProducts() {
     // if (error) return <span> Error cargando Articulos Likeados </span> ;
 
     return (
-        <div className="liked-products" style={{ position: "sticky" }}>
+        <div className="liked-products text-neutral" style={{ position: "sticky" }}>
             <Accordion variant="splitted">
-                <AccordionItem className="border-3 border-base-300 bg-white rounded-2xl" key="1" title={
+                <AccordionItem className="border-3 border-base-300 bg-neutral-content rounded-2xl" key="1" title={
                     <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
                         Articulos Favoritos
                     </div>

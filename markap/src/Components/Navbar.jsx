@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom"; // Importa Link y useNavig
 import { jwtDecode } from "jwt-decode";
 import { fetchCarritoData } from "../Pages/Carrito.jsx";
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle.jsx";
+
 
 const MyNavbar = () => {
     const navigate = useNavigate();
@@ -58,6 +60,7 @@ const MyNavbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li><Link to="/login">Iniciar Sesión</Link></li>
                         <li className="font-bold"><Link to="/register">Registrarse</Link></li>
+                        <ThemeToggle/>
                     </ul>
                 </div>
             </div>
@@ -125,6 +128,7 @@ const MyNavbar = () => {
                             <li onClick={handleLogout}><a>Cerrar Sesión</a></li>
                         </ul>
                     </div>
+                    <div className="dropdown dropdown-end"> <ThemeToggle/> </div>
                 </div>
             </div>
         );

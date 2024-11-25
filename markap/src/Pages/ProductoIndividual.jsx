@@ -47,7 +47,7 @@ const ProductoIndividual = () => {
     return (
         <>
             <MyNavbar />
-            <div className="flex flex-row text-base-content" style={{
+            <div className="flex flex-row text-base-content h-screen" style={{
                 paddingTop: "2rem",
                 paddingLeft: "12rem",
                 gap: "2rem",
