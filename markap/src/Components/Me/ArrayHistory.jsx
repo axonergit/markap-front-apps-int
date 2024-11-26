@@ -19,7 +19,7 @@ export default function ArrayHistory({ compras }) {
             ) : (
                 compras.map((compra, index) => (
                     <Card
-                        className="border-2 border-base-300 bg-white"
+                        className="border-2 border-base-300 bg-neutral-content"
                         shadow="sm"
                         key={index}
                         isPressable
@@ -30,7 +30,7 @@ export default function ArrayHistory({ compras }) {
                                 shadow="sm"
                                 alt={compra.id}
                                 width="100%"
-                                className="w-full object-contain h-[100px] border-1 border-base-300 bg-white"
+                                className="w-full object-contain h-[100px] border-1 border-base-300 bg-neutral-content"
                                 src="assets/markap.jpg"
                             />
                         </CardBody>

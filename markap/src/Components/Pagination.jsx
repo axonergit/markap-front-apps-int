@@ -39,13 +39,13 @@ export default function Pagination({ currentPage, onPageChange, maxVisiblePages 
   return (
     
     <nav role="navigation" aria-label="Pagination Navigation">
-      <ul className="flex list-none items-center justify-center text-sm text-slate-700 md:gap-1">
+      <ul className="flex list-none items-center justify-center text-sm text-slate-700 md:gap-1 ">
         <li>
           <button
             onClick={handlePrev}
             disabled={currentPage === 1}
             aria-label="Goto Previous Page"
-            className="inline-flex h-10 items-center justify-center gap-4 rounded stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-emerald-50 hover:stroke-emerald-500 hover:text-emerald-500 focus:bg-emerald-50 focus:stroke-emerald-600 focus:text-emerald-600 focus-visible:outline-none"
+            className=" inline-flex h-10 items-center justify-center gap-4 rounded stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-accent hover:text-neutral-content focus:bg-emerald-50 focus:stroke-emerald-600 focus:text-emerald-600 focus-visible:outline-none"
           >
             Prev
           </button>
@@ -58,8 +58,8 @@ export default function Pagination({ currentPage, onPageChange, maxVisiblePages 
               aria-label={`Goto Page ${startPage + index}`}
               className={`h-10 items-center justify-center rounded px-4 text-sm font-medium transition duration-300 md:inline-flex ${
                 currentPage === startPage + index
-                  ? "bg-emerald-500 text-white"
-                  : "text-slate-700 hover:bg-emerald-50 hover:text-emerald-500"
+                  ? "bg-accent text-neutral-content"
+                  : "hover:text-neutral-content hover:bg-accent"
               }`}
             >
               {startPage + index}
@@ -72,7 +72,7 @@ export default function Pagination({ currentPage, onPageChange, maxVisiblePages 
             onClick={handleNext}
             disabled={currentPage === totalPages}
             aria-label="Goto Next Page"
-            className="inline-flex h-10 items-center justify-center gap-4 rounded stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-emerald-50 hover:stroke-emerald-500 hover:text-emerald-500 focus:bg-emerald-50 focus:stroke-emerald-600 focus:text-emerald-600 focus-visible:outline-none"
+            className="inline-flex h-10 items-center justify-center gap-4 rounded stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-accent hover:text-neutral-content focus:bg-emerald-50 focus:stroke-emerald-600 focus:text-emerald-600 focus-visible:outline-none"
           >
             Next
           </button>

@@ -54,10 +54,10 @@ const Register = () => {
         <>
         <MyNavbar/>
         <div
-            className="flex items-center justify-center to-black p-6">
+            className="flex items-center justify-center to-black p-6 h-screen">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col w-full max-w-2xl bg-white/90 p-10 rounded-3xl shadow-2xl backdrop-blur-lg gap-6 transition-transform transform hover:scale-105"
+                className="flex flex-col w-full max-w-2xl bg-neutral-content/90 p-10 rounded-3xl shadow-2xl backdrop-blur-lg gap-6 transition-transform transform hover:scale-105 text-neutral"
             >
                 {errorMessage && (
                     <div className="alert alert-error flex items-center p-4 mb-4 text-red-700 bg-red-100 rounded-lg">
@@ -156,7 +156,7 @@ const Register = () => {
                 <Button
                     type="submit"
                     isLoading={isLoading}
-                    className="btn btn-primary mt-6 w-full py-3 rounded-lg text-lg font-semibold bg-bg-primary hover:bg-bg-primary text-white transition-colors duration-300 ease-in-out"
+                    className="btn btn-accent mt-6 w-full py-3 rounded-lg text-lg font-semibold bg-bg-primary hover:bg-bg-primary text-neutral-content transition-colors duration-300 ease-in-out"
                 >
                     Registrarse
                 </Button>

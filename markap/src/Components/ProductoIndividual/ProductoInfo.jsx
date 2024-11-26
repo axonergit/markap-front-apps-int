@@ -20,7 +20,7 @@ export default function ProductoInfo( { productoJson } ) {
     );
 
     return (
-        <div className="bg-neutral-content border-2 border-base-300"
+        <div className="bg-neutral-content border-3 border-base-content text-neutral"
              style={{padding: "1em", width: "30rem", height: "auto",borderRadius: "8px"}}>
             <h1 style={{fontSize: "2.5rem", fontWeight: "bold"}}>{productoJson.descripcion}</h1>
             <p style={{width: '25rem'}}>
