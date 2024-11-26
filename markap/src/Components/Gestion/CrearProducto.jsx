@@ -1,5 +1,4 @@
 import { useForm, Controller } from "react-hook-form";
-import { Input, Button, Textarea, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Select, SelectItem } from "@nextui-org/react";
 import axiosClient from "../../config/axiosClient.js";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -62,136 +61,149 @@ const CrearProducto = () => {
 
     return (
         <>
-            <Button color="primary" onPress={() => setIsOpen(true)}>
+            <button className="btn btn-primary" onClick={() => setIsOpen(true)}>
                 Crear Producto
-            </Button>
-            <Modal
-                isOpen={isOpen}
-                onClose={() => {
-                    setIsOpen(false);
-                    reset();
-                    setSuccessMessage(null);
-                    setErrorMessage(null);
-                }}
-                size="3xl"
-                scrollBehavior="inside"
-            >
-                <ModalContent>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <ModalHeader className="flex flex-col gap-1">Nuevo Producto</ModalHeader>
-                        <ModalBody>
-                            {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
-                            {successMessage && <div className="text-green-500 mb-4">{successMessage}</div>}
+            </button>
+            <dialog id="modal_crear_producto" className={`modal ${isOpen ? 'modal-open' : ''}`}>
+                <div className="modal-box w-11/12 max-w-5xl">
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
+                        <h3 className="font-bold text-lg">Nuevo Producto</h3>
+                        {errorMessage && <div className="alert alert-error">{errorMessage}</div>}
+                        {successMessage && <div className="alert alert-success">{successMessage}</div>}
 
-                            <Controller
-                                name="descripcion"
-                                control={control}
-                                rules={{ required: "La descripción es obligatoria" }}
-                                render={({ field }) => (
-                                    <Input
+                        <Controller
+                            name="descripcion"
+                            control={control}
+                            rules={{ required: "La descripción es obligatoria" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Descripción</span>
+                                    </label>
+                                    <input
                                         {...field}
-                                        label="Descripción"
+                                        type="text"
                                         placeholder="Ingrese la descripción del producto"
-                                        isInvalid={!!errors.descripcion}
-                                        errorMessage={errors.descripcion?.message}
+                                        className={`input input-bordered ${errors.descripcion ? 'input-error' : ''}`}
                                     />
-                                )}
-                            />
+                                    {errors.descripcion && <span className="text-error text-sm">{errors.descripcion.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="precio"
-                                control={control}
-                                rules={{ required: "El precio es obligatorio" }}
-                                render={({ field }) => (
-                                    <Input
+                        <Controller
+                            name="precio"
+                            control={control}
+                            rules={{ required: "El precio es obligatorio" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Precio</span>
+                                    </label>
+                                    <input
                                         {...field}
-                                        label="Precio"
+                                        type="number"
+                                        step="0.01"
                                         placeholder="Ingrese el precio del producto"
-                                        type="number"
-                                        isInvalid={!!errors.precio}
-                                        errorMessage={errors.precio?.message}
+                                        className={`input input-bordered ${errors.precio ? 'input-error' : ''}`}
                                     />
-                                )}
-                            />
+                                    {errors.precio && <span className="text-error text-sm">{errors.precio.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="detalles"
-                                control={control}
-                                rules={{ required: "Los detalles son obligatorios" }}
-                                render={({ field }) => (
-                                    <Textarea
+                        <Controller
+                            name="detalles"
+                            control={control}
+                            rules={{ required: "Los detalles son obligatorios" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Detalles</span>
+                                    </label>
+                                    <textarea
                                         {...field}
-                                        label="Detalles"
                                         placeholder="Ingrese los detalles del producto"
-                                        isInvalid={!!errors.detalles}
-                                        errorMessage={errors.detalles?.message}
+                                        className={`textarea textarea-bordered ${errors.detalles ? 'textarea-error' : ''}`}
                                     />
-                                )}
-                            />
+                                    {errors.detalles && <span className="text-error text-sm">{errors.detalles.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="stock"
-                                control={control}
-                                rules={{ required: "El stock es obligatorio" }}
-                                render={({ field }) => (
-                                    <Input
+                        <Controller
+                            name="stock"
+                            control={control}
+                            rules={{ required: "El stock es obligatorio" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Stock</span>
+                                    </label>
+                                    <input
                                         {...field}
-                                        label="Stock"
-                                        placeholder="Ingrese el stock del producto"
                                         type="number"
-                                        isInvalid={!!errors.stock}
-                                        errorMessage={errors.stock?.message}
+                                        placeholder="Ingrese el stock del producto"
+                                        className={`input input-bordered ${errors.stock ? 'input-error' : ''}`}
                                     />
-                                )}
-                            />
+                                    {errors.stock && <span className="text-error text-sm">{errors.stock.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="categoria"
-                                control={control}
-                                rules={{ required: "La categoría es obligatoria" }}
-                                render={({ field }) => (
-                                    <Select
+                        <Controller
+                            name="categoria"
+                            control={control}
+                            rules={{ required: "La categoría es obligatoria" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Categoría</span>
+                                    </label>
+                                    <select
                                         {...field}
-                                        label="Categoría"
-                                        placeholder="Seleccione una categoría"
-                                        isInvalid={!!errors.categoria}
-                                        errorMessage={errors.categoria?.message}
+                                        className={`select select-bordered ${errors.categoria ? 'select-error' : ''}`}
                                     >
+                                        <option value="">Seleccione una categoría</option>
                                         {categorias?.map((categoria) => (
-                                            <SelectItem key={categoria.id} value={categoria.id.toString()}>
+                                            <option key={categoria.id} value={categoria.id.toString()}>
                                                 {categoria.nombreCategoria}
-                                            </SelectItem>
+                                            </option>
                                         ))}
-                                    </Select>
-                                )}
-                            />
+                                    </select>
+                                    {errors.categoria && <span className="text-error text-sm">{errors.categoria.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="imagen"
-                                control={control}
-                                rules={{ required: "La imagen es obligatoria" }}
-                                render={({ field }) => (
-                                    <Input
+                        <Controller
+                            name="imagen"
+                            control={control}
+                            rules={{ required: "La imagen es obligatoria" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Imagen</span>
+                                    </label>
+                                    <input
                                         type="file"
-                                        label="Imagen"
                                         onChange={(e) => field.onChange(e.target.files)}
-                                        isInvalid={!!errors.imagen}
-                                        errorMessage={errors.imagen?.message}
+                                        className="file-input file-input-bordered w-full"
                                     />
-                                )}
-                            />
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button color="danger" variant="light" onPress={() => setIsOpen(false)}>
-                                Cerrar
-                            </Button>
-                            <Button color="primary" type="submit" isLoading={isLoading}>
+                                    {errors.imagen && <span className="text-error text-sm">{errors.imagen.message}</span>}
+                                </div>
+                            )}
+                        />
+
+                        <div className="modal-action">
+                            <button type="button" className="btn" onClick={() => setIsOpen(false)}>Cerrar</button>
+                            <button type="submit" className={`btn btn-primary ${isLoading ? 'loading' : ''}`} disabled={isLoading}>
                                 Crear
-                            </Button>
-                        </ModalFooter>
+                            </button>
+                        </div>
                     </form>
-                </ModalContent>
-            </Modal>
+                </div>
+            </dialog>
         </>
     )
 }
