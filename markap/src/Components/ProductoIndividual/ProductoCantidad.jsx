@@ -22,12 +22,12 @@ export default function ProductoCantidad({ productoJson, cantidad, cantidadQuery
                         borderRadius: "8px 0 0 8px",
                         backgroundColor: "neutral-content",
                     }}
-                    className="border-2 border-r-0 border-base-content text-accent-content"
+                    className="border-2 border-r-0 border-base-content text-success-content bg-neutral-content"
                     auto size="md" onClick={handleDisminuir} disabled={cantidad == 0} variant="ghost"
             >
                 -
             </Button>
-            <span className="border-2 border-r-0 border-l-0 border-base-content"
+            <span className="border-2 border-r-0 border-l-0 border-base-content text-success-content bg-neutral-content"
               style={{
                 padding: "0 1.5rem",
                 fontSize: "1.53rem",
@@ -38,7 +38,7 @@ export default function ProductoCantidad({ productoJson, cantidad, cantidadQuery
             }}>
                 {cantidad + cantidadQuery}
             </span>
-            <Button className="border-2 border-l-0 border-base-content text-accent-content"
+            <Button className="border-2 border-l-0 border-base-content text-success-content bg-neutral-content"
                 style={{
                     fontSize: "1.25rem",
                     borderRadius: "0 8px 8px 0",

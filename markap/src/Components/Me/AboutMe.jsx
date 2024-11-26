@@ -18,8 +18,8 @@
                     src="https://akamai.sscdn.co/uploadfile/letras/fotos/5/9/1/b/591b070413cf1d9c34bc8528ee500268.jpg"
                     className="w-80 h-80 text-large"
                 />
-                <div className="bg-neutral-content pt-3"
-                     style={{marginTop: "1em", borderRadius: "8px"}}>
+                <div className="mt-5"
+                     style={{borderRadius: "8px"}}>
                     {error && (
                         <>
                             <p>Error</p>

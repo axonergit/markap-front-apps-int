@@ -74,7 +74,7 @@ export default function ModalHistory({ isOpen, onClose, carritoId }) {
                             </div>
                             <div style={{ display: "flex", justifyContent: "center", marginTop: ".2rem" }}>
                                 <Pagination
-                                    color="bg-primary"
+                                    className="text-success-content"
                                     total={itemsHistorial?.totalPages}
                                     initialPage={currentPage}
                                     onChange={(page) => setCurrentPage(page)}
