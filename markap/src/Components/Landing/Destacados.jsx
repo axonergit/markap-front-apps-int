@@ -38,7 +38,7 @@ export default function Destacados() {
             <p>Error cargando productos destacados</p>
             <button 
                 onClick={() => refetch()}
-                className="mt-2 bg-base-100 hover:bg-base-200 text-neutral font-bold py-2 px-4 rounded"
+                className="mt-2 bg-accent text-neutral-content font-bold py-2 px-4 rounded"
             >
                 Reintentar
             </button>

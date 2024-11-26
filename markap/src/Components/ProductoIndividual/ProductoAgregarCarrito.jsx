@@ -49,7 +49,7 @@ export default function ProductoAgregarCarrito({productoJson, cantidad, setCanti
     return (
         <>
             <Button
-                className="w-[260px] h-[60px] btn btn-primary btn-lg bg-neutral-content"
+                className="w-[260px] h-[60px] btn btn-primary btn-lg bg-neutral-content border-accent-content"
                 style={{fontSize: "1.2rem", fontWeight: "bold"}}
                 onClick={handleAgregarAlCarrito}
                 disabled={cantidad === 0}
