@@ -78,10 +78,6 @@ const Carrito = () => {
         }
     };
 
-    const handleVolver = () => {
-        // Navegación para el botón de "Volver"
-        window.location.href = '/';
-    };
 
     const handleAgregarItem = async (productId) => {
         try {
@@ -142,9 +138,11 @@ const Carrito = () => {
                 <div className="text-center">
                     {error}
                     <div className="mt-4">
-                        <button className="btn btn-primary" onClick={handleVolver}>
-                            Volver
-                        </button>
+                        <Link to={"/"}>
+                            <button className="btn btn-primary">
+                                Volver
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -161,9 +159,11 @@ const Carrito = () => {
                 ) : items.length === 0 ? (
                     <div className="relative">
                         <div>No hay items en el carrito.</div>
-                        <button className="btn btn-secondary absolute bottom-4 right-4" onClick={handleVolver}>
-                            Volver
-                        </button>
+                        <Link to={"/"}>
+                            <button className="btn btn-primary">
+                                Volver
+                            </button>
+                        </Link>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

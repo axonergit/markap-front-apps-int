@@ -1,13 +1,13 @@
 import MyNavbar from "../Components/Navbar.jsx";
 import { useQuery } from '@tanstack/react-query';
 import axiosClient from "../config/axiosClient.js";
-import ProductoImage from "../Components/Productoindividual/ProductoImage.jsx";
+import ProductoImage from "../Components/ProductoIndividual/ProductoImage.jsx";
 import { useParams } from "react-router-dom";
-import ProductoInfo from "../Components/Productoindividual/ProductoInfo.jsx";
-import ProductoCantidad from "../Components/Productoindividual/ProductoCantidad.jsx";
+import ProductoInfo from "../Components/ProductoIndividual/ProductoInfo.jsx";
+import ProductoCantidad from "../Components/ProductoIndividual/ProductoCantidad.jsx";
 import { useEffect, useState } from "react";
-import ProductoAgregarCarrito from "../Components/Productoindividual/ProductoAgregarCarrito.jsx";
-import ProductoAgregarLike from "../Components/Productoindividual/ProductoAgregarLike.jsx";
+import ProductoAgregarCarrito from "../Components/ProductoIndividual/ProductoAgregarCarrito.jsx";
+import ProductoAgregarLike from "../Components/ProductoIndividual/ProductoAgregarLike.jsx";
 import {Spinner} from "@nextui-org/react";
 
 const ProductoIndividual = () => {
@@ -43,16 +43,14 @@ const ProductoIndividual = () => {
         }
         fetchData();
     }, [productId]);
-    if (error) return <p>Error al cargar los datos del producto.</p>;
 
     return (
-        <div className="flex flex-col">
+        <>
             <MyNavbar />
-            <div className="flex flex-row bg-gradient-to-r from-slate-900 to-slate-800" style={{
+            <div className="flex flex-row text-base-content h-screen" style={{
                 paddingTop: "2rem",
                 paddingLeft: "12rem",
                 gap: "2rem",
-                minHeight: "95vh",
             }}>
                 {error && "No existe tal producto"}
                 {isLoading && <Spinner/>}
@@ -92,7 +90,6 @@ const ProductoIndividual = () => {
                                 alignItems: "center",
                                 paddingTop: "1rem",
                                 paddingLeft: "4rem",
-                                color: "white",
                                 fontWeight: "bold",
                             }}>
                                 <p>NO HAY STOCK</p>
@@ -101,7 +98,7 @@ const ProductoIndividual = () => {
                     </div>
                     </>)}
             </div>
-        </div>
+        </>
     );
 }
 

@@ -1,11 +1,10 @@
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import axiosClient from "../config/axiosClient.js";
-import React from "react";
+import axiosClient from "../../config/axiosClient.js";
 
 // eslint-disable-next-line react/prop-types
-export default function ProductsScript({ productosResponse }) {
+export default function ArrayProducts({ productosResponse }) {
 
     console.log(productosResponse);
     const { data: productos, isLoading, error } = useQuery({
@@ -36,6 +35,7 @@ export default function ProductsScript({ productosResponse }) {
             ) : (
                 productosResponse.map((item, index) => (
                     <Card
+                        className="border-2 border-base-300 bg-neutral-content"
                         shadow="sm"
                         key={index}
                         isPressable
@@ -44,10 +44,9 @@ export default function ProductsScript({ productosResponse }) {
                         <CardBody className="overflow-visible p-0">
                             <Image
                                 shadow="sm"
-                                radius="lg"
                                 alt={item.descripcion}
                                 width="100%"
-                                className="w-full object-contain h-[200px]"
+                                className="w-full object-contain h-[200px] border-1 border-base-300 bg-neutral-content"
                                 src={item.imagen}
                             />
                         </CardBody>

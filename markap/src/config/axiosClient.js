@@ -26,8 +26,8 @@ axiosClient.interceptors.response.use(
     (response) => response,
     (error) => {
         // Manejo de errores global (opcional)
-        if (error.response && error.response.status === 401) {
-            console.error("No autorizado, redirigir al login...");
+        if (error.response && error.response.status === 500) {
+            localStorage.removeItem("authToken");
             // Puedes redirigir al usuario al login, por ejemplo
         }
         return Promise.reject(error);

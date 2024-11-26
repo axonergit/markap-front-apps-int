@@ -1,4 +1,3 @@
-import React from "react";
 import {Button} from "@nextui-org/react";
 
 // eslint-disable-next-line react/prop-types
@@ -17,40 +16,35 @@ export default function ProductoCantidad({ productoJson, cantidad, cantidadQuery
 
     return (
         <div style={{display: "flex", alignItems: "center", paddingLeft: "8vh"}}>
-            <Button variant="ghost"
-                style={{
-                    fontSize: "1.25rem",
-                    borderRadius: "8px 0 0 8px",
-                    border: "2px solid #0072F5",
-                    borderRight: "none",
-                    backgroundColor: "white",
-                }}
-                auto size="md" color="primary" onClick={handleDisminuir} disabled={cantidad == 0}
+            <Button style={{
+                        fontSize: "1.25rem",
+                        fontWeight: "bold",
+                        borderRadius: "8px 0 0 8px",
+                        backgroundColor: "neutral-content",
+                    }}
+                    className="border-2 border-r-0 border-base-content text-accent-content"
+                    auto size="md" onClick={handleDisminuir} disabled={cantidad == 0} variant="ghost"
             >
                 -
             </Button>
-            <span style={{
+            <span className="border-2 border-r-0 border-l-0 border-base-content"
+              style={{
                 padding: "0 1.5rem",
                 fontSize: "1.53rem",
-                border: "2px solid #0072F5",
-                borderLeft: "none",
-                borderRight: "none",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "white",
+                backgroundColor: "neutral-content",
             }}>
                 {cantidad + cantidadQuery}
             </span>
-            <Button variant="ghost"
+            <Button className="border-2 border-l-0 border-base-content text-accent-content"
                 style={{
                     fontSize: "1.25rem",
                     borderRadius: "0 8px 8px 0",
-                    border: "2px solid #0072F5",
-                    borderLeft: "none",
-                    backgroundColor: "white",
+                    backgroundColor: "neutral-content",
                 }}
-                auto size="md" color="primary" onClick={handleIncremento} disabled={cantidad+cantidadQuery == maxAmount}
+                auto size="md" onClick={handleIncremento} disabled={cantidad+cantidadQuery == maxAmount} variant="ghost"
             >
                 +
             </Button>

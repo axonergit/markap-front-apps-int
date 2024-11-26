@@ -13,13 +13,18 @@
         });
 
         return (
-            <div className="about-me" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div className="h-screen" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <Avatar
                     src="https://akamai.sscdn.co/uploadfile/letras/fotos/5/9/1/b/591b070413cf1d9c34bc8528ee500268.jpg"
                     className="w-80 h-80 text-large"
                 />
-                <div className="bg-neutral-content"
+                <div className="bg-neutral-content pt-3"
                      style={{marginTop: "1em", borderRadius: "8px"}}>
+                    {error && (
+                        <>
+                            <p>Error</p>
+                        </>
+                    )}
                     {isLoading && (
                         <div style={{
                             display: "flex",
@@ -30,17 +35,17 @@
                             <CircularProgress label="Cargando..." />
                         </div>
                     )}
-                    {userProfile && (
-                        <Accordion>
-                            <AccordionItem className="w-80 h-190" key="1" subtitle="Ver Informacion"
-                                           title={userProfile.nombreCompleto}>
-                                email: {userProfile.email}<br />
-                                nacimiento: {userProfile.birthDate}
-                            </AccordionItem>
-                        </Accordion>
-                    )}
-                    {error && (
-                        <p>Error al cargar el perfil del usuario.</p>
+                    {!error && userProfile && (
+                        <>
+                            <Accordion variant="splitted">
+                                <AccordionItem className="w-80 h-190 border-1 border-base-300 bg-neutral-content rounded-2xl text-neutral"
+                                               key="1" subtitle="Ver Informacion"
+                                               title={userProfile.nombreCompleto}>
+                                    email: {userProfile.email}<br />
+                                    nacimiento: {userProfile.birthDate}
+                                </AccordionItem>
+                            </Accordion>
+                        </>
                     )}
                 </div>
             </div>

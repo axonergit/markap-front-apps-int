@@ -18,35 +18,32 @@ const Me = () => {
 
 
     return (
-        <>
-
+        <div>
             <Navbar/>
-            <div data-theme="retro" className="h-screen"
+            <div
                  style={{
-                    padding: "2vh",
-                    display: "flex",
-                    justifyContent: "start",
-                    flexDirection: "row",
-                }}>
+                     padding: "2vh",
+                     display: "flex",
+                     justifyContent: "start",
+                     flexDirection: "row",
+                 }}>
                 <div>
-                    <AboutMe  />
+                    <AboutMe/>
                 </div>
                 <div
                     style={
-                    {
-                        flexGrow: "1",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "start",
-                        marginLeft: "5vh",
-                        gap: "1.2vh"
-                    }}>
+                        {
+                            flexGrow: "1",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "start",
+                            marginLeft: "5vh",
+                            gap: "1.2vh"
+                        }}>
                     <LikedProducts/>
                     <HistoryProducts/>
                 </div>
             </div>
-        </>
-    );
-};
+        </div>);};
 
 export default Me;
