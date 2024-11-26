@@ -35,7 +35,7 @@ export default function ArrayProducts({ productosResponse }) {
             ) : (
                 productosResponse.map((item, index) => (
                     <Card
-                        className="border-2 border-base-300 bg-white"
+                        className="border-2 border-base-300 bg-neutral-content"
                         shadow="sm"
                         key={index}
                         isPressable
@@ -46,7 +46,7 @@ export default function ArrayProducts({ productosResponse }) {
                                 shadow="sm"
                                 alt={item.descripcion}
                                 width="100%"
-                                className="w-full object-contain h-[200px] border-1 border-base-300 bg-white"
+                                className="w-full object-contain h-[200px] border-1 border-base-300 bg-neutral-content"
                                 src={item.imagen}
                             />
                         </CardBody>

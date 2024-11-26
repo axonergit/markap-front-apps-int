@@ -13,7 +13,7 @@ export default {
     extend: {},
   },
   daisyui: {
-    themes: ["retro"]
+    themes: ["retro", "coffee"],
   },
   darkMode: "class",
   plugins: [nextui(),require("daisyui"), require("@tailwindcss/line-clamp")]

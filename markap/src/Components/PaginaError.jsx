@@ -14,7 +14,7 @@ const ErrorPage = ({ statusCode, message }) => {
             </p>
             <button 
                 onClick={() => navigate(-1)} 
-                className="mt-6 px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-200"
+                className="mt-6 px-4 py-2 bg-blue-600 text-neutral-content font-semibold rounded-md hover:bg-blue-700 transition duration-200"
             >
                 Volver a la página anterior
             </button>

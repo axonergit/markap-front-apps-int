@@ -1,28 +1,27 @@
 import PropTypes from 'prop-types';
 import { useForm, Controller } from "react-hook-form";
-import { Input, Button, Textarea, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Select, SelectItem } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import axiosClient from "../../config/axiosClient.js";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-const ModificarProducto = ({ producto, onClose, size, className }) => {
+const ModificarProducto = ({ producto, onClose }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const queryClient = useQueryClient();
 
-    const { control, handleSubmit, setValue, reset, formState: { errors } } = useForm({
+    const { control, handleSubmit, reset, formState: { errors } } = useForm({
         defaultValues: {
             descripcion: '',
             precio: '',
             detalles: '',
             stock: '',
-            categoria: ''
+            categoria: '',
+            imagen: null
         }
     });
 
-    // Fetch categories
     const { data: categorias } = useQuery({
         queryKey: ['Categorias'],
         queryFn: () => axiosClient.get("/productos/categoria").then((res) => res.data),
@@ -46,40 +45,23 @@ const ModificarProducto = ({ producto, onClose, size, className }) => {
             setSuccessMessage(null);
             setErrorMessage(null);
 
-            const productData = {
-                descripcion: data.descripcion,
-                precio: Number(data.precio),
-                detalles: data.detalles,
-                stock: Number(data.stock),
-                categoria: Number(data.categoria)
-            };
-
-            let response;
+            const formData = new FormData();
             if (data.imagen && data.imagen[0]) {
-                const formData = new FormData();
                 formData.append("imagen", data.imagen[0]);
-                Object.entries(productData).forEach(([key, value]) => {
-                    formData.append(key, value);
-                });
-
-                response = await axiosClient.put(`/productos/${producto.id}`, formData, {
-                    headers: { "Content-Type": "multipart/form-data" }
-                });
-            } else {
-                response = await axiosClient.put(`/productos/${producto.id}`, productData, {
-                    headers: { "Content-Type": "application/json" }
-                });
             }
+            formData.append("descripcion", data.descripcion);
+            formData.append("precio", data.precio);
+            formData.append("detalles", data.detalles);
+            formData.append("stock", data.stock);
+            formData.append("categoria", data.categoria);
+
+            const response = await axiosClient.put(`/productos/${producto.id}`, formData, {
+                headers: { "Content-Type": "multipart/form-data" }
+            });
 
             console.log("Server response:", response.data);
-
             setSuccessMessage("Producto modificado exitosamente");
             queryClient.invalidateQueries(['Productos']);
-
-            // Update the local state of the product
-            queryClient.setQueryData(['Productos'], (oldData) => {
-                return oldData.map(p => p.id === producto.id ? { ...p, ...productData } : p);
-            });
 
             setTimeout(() => {
                 setIsOpen(false);
@@ -108,131 +90,158 @@ const ModificarProducto = ({ producto, onClose, size, className }) => {
 
     return (
         <>
-            <Button color="primary" onPress={openModal} size={size} className={className}>
+            <button className="btn btn-secondary btn-sm" onClick={openModal}>
                 Modificar
-            </Button>
-            <Modal
-                isOpen={isOpen}
-                onClose={closeModal}
-                size="3xl"
-                scrollBehavior="inside"
-            >
-                <ModalContent className="overflow-hidden">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <ModalHeader className="flex flex-col gap-1">Modificar Producto</ModalHeader>
-                        <ModalBody>
-                            {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
-                            {successMessage && <div className="text-green-500 mb-4">{successMessage}</div>}
+            </button>
+            <dialog id={`modal_${producto.id}`} className={`modal ${isOpen ? 'modal-open' : ''}`}>
+                <div className="modal-box w-11/12 max-w-5xl">
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
+                        <h3 className="font-bold text-lg">Modificar Producto</h3>
+                        {errorMessage && (
+                            <div className="alert alert-error">
+                                <span>{errorMessage}</span>
+                            </div>
+                        )}
+                        {successMessage && (
+                            <div className="alert alert-success">
+                                <span>{successMessage}</span>
+                            </div>
+                        )}
 
-                            <Controller
-                                name="descripcion"
-                                control={control}
-                                rules={{ required: "La descripción es obligatoria" }}
-                                render={({ field }) => (
-                                    <Input
+                        <Controller
+                            name="descripcion"
+                            control={control}
+                            rules={{ required: "La descripción es obligatoria" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Descripción</span>
+                                    </label>
+                                    <input
                                         {...field}
-                                        label="Descripción"
+                                        type="text"
                                         placeholder="Ingrese la descripción del producto"
-                                        isInvalid={!!errors.descripcion}
-                                        errorMessage={errors.descripcion?.message}
+                                        className={`input input-bordered ${errors.descripcion ? 'input-error' : ''}`}
                                     />
-                                )}
-                            />
+                                    {errors.descripcion && <span className="text-error text-sm">{errors.descripcion.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="precio"
-                                control={control}
-                                rules={{ required: "El precio es obligatorio" }}
-                                render={({ field }) => (
-                                    <Input
+                        <Controller
+                            name="precio"
+                            control={control}
+                            rules={{ required: "El precio es obligatorio" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Precio</span>
+                                    </label>
+                                    <input
                                         {...field}
-                                        label="Precio"
+                                        type="number"
+                                        step="0.01"
                                         placeholder="Ingrese el precio del producto"
-                                        type="number"
-                                        isInvalid={!!errors.precio}
-                                        errorMessage={errors.precio?.message}
+                                        className={`input input-bordered ${errors.precio ? 'input-error' : ''}`}
                                     />
-                                )}
-                            />
+                                    {errors.precio && <span className="text-error text-sm">{errors.precio.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="detalles"
-                                control={control}
-                                rules={{ required: "Los detalles son obligatorios" }}
-                                render={({ field }) => (
-                                    <Textarea
+                        <Controller
+                            name="detalles"
+                            control={control}
+                            rules={{ required: "Los detalles son obligatorios" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Detalles</span>
+                                    </label>
+                                    <textarea
                                         {...field}
-                                        label="Detalles"
                                         placeholder="Ingrese los detalles del producto"
-                                        isInvalid={!!errors.detalles}
-                                        errorMessage={errors.detalles?.message}
+                                        className={`textarea textarea-bordered ${errors.detalles ? 'textarea-error' : ''}`}
                                     />
-                                )}
-                            />
+                                    {errors.detalles && <span className="text-error text-sm">{errors.detalles.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="stock"
-                                control={control}
-                                rules={{ required: "El stock es obligatorio" }}
-                                render={({ field }) => (
-                                    <Input
+                        <Controller
+                            name="stock"
+                            control={control}
+                            rules={{ required: "El stock es obligatorio" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Stock</span>
+                                    </label>
+                                    <input
                                         {...field}
-                                        label="Stock"
-                                        placeholder="Ingrese el stock del producto"
                                         type="number"
-                                        isInvalid={!!errors.stock}
-                                        errorMessage={errors.stock?.message}
+                                        placeholder="Ingrese el stock del producto"
+                                        className={`input input-bordered ${errors.stock ? 'input-error' : ''}`}
                                     />
-                                )}
-                            />
+                                    {errors.stock && <span className="text-error text-sm">{errors.stock.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="categoria"
-                                control={control}
-                                rules={{ required: "La categoría es obligatoria" }}
-                                render={({ field }) => (
-                                    <Select
+                        <Controller
+                            name="categoria"
+                            control={control}
+                            rules={{ required: "La categoría es obligatoria" }}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Categoría</span>
+                                    </label>
+                                    <select
                                         {...field}
-                                        label="Categoría"
-                                        placeholder="Seleccione una categoría"
-                                        isInvalid={!!errors.categoria}
-                                        errorMessage={errors.categoria?.message}
+                                        className={`select select-bordered ${errors.categoria ? 'select-error' : ''}`}
                                     >
+                                        <option value="">Seleccione una categoría</option>
                                         {categorias?.map((categoria) => (
-                                            <SelectItem key={categoria.id} value={categoria.id.toString()}>
+                                            <option key={categoria.id} value={categoria.id.toString()}>
                                                 {categoria.nombreCategoria}
-                                            </SelectItem>
+                                            </option>
                                         ))}
-                                    </Select>
-                                )}
-                            />
+                                    </select>
+                                    {errors.categoria && <span className="text-error text-sm">{errors.categoria.message}</span>}
+                                </div>
+                            )}
+                        />
 
-                            <Controller
-                                name="imagen"
-                                control={control}
-                                render={({ field }) => (
-                                    <Input
+                        <Controller
+                            name="imagen"
+                            control={control}
+                            render={({ field }) => (
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Imagen</span>
+                                    </label>
+                                    <input
                                         type="file"
-                                        label="Imagen"
                                         onChange={(e) => field.onChange(e.target.files)}
+                                        className="file-input file-input-bordered w-full"
                                     />
-                                )}
-                            />
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button color="danger" variant="light" onPress={closeModal}>
-                                Cerrar
-                            </Button>
-                            <Button color="primary" type="submit" isLoading={isLoading}>
+                                </div>
+                            )}
+                        />
+
+                        <div className="modal-action">
+                            <button type="button" className="btn" onClick={closeModal}>Cerrar</button>
+                            <button type="submit" className={`btn btn-primary ${isLoading ? 'loading' : ''}`} disabled={isLoading}>
                                 Modificar
-                            </Button>
-                        </ModalFooter>
+                            </button>
+                        </div>
                     </form>
-                </ModalContent>
-            </Modal>
+                </div>
+            </dialog>
         </>
-    )
-}
+    );
+};
 
 ModificarProducto.propTypes = {
     producto: PropTypes.shape({
@@ -244,8 +253,6 @@ ModificarProducto.propTypes = {
         categoria: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     }).isRequired,
     onClose: PropTypes.func.isRequired,
-    size: PropTypes.string,
-    className: PropTypes.string,
 };
 
 export default ModificarProducto;

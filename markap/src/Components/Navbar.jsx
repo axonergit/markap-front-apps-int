@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom"; // Importa Link y useNavig
 import { jwtDecode } from "jwt-decode";
 import { fetchCarritoData } from "../Pages/Carrito.jsx";
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle.jsx";
+
 
 const MyNavbar = () => {
     const navigate = useNavigate();
@@ -58,6 +60,7 @@ const MyNavbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li><Link to="/login">Iniciar Sesión</Link></li>
                         <li className="font-bold"><Link to="/register">Registrarse</Link></li>
+                        <ThemeToggle/>
                     </ul>
                 </div>
             </div>
@@ -86,7 +89,7 @@ const MyNavbar = () => {
                                         strokeWidth="2"
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                                 </svg>
-                                <span className="badge badge-sm indicator-item">{cantidadItems}</span>
+                                <span className="badge badge-sm indicator-item bg-neutral-content">{cantidadItems}</span>
                             </div>
                         </div>
                         <div
@@ -125,6 +128,7 @@ const MyNavbar = () => {
                             <li onClick={handleLogout}><a>Cerrar Sesión</a></li>
                         </ul>
                     </div>
+                    <div className="dropdown dropdown-end"> <ThemeToggle/> </div>
                 </div>
             </div>
         );
