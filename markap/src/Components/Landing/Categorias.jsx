@@ -22,7 +22,7 @@ const Categorias = () => {
             <p>Error cargando las categorías existentes</p>
             <button 
                 onClick={() => refetch()}
-                className="mt-2 bg-blue-500 hover:bg-blue-700 text-neutral-content font-bold py-2 px-4 rounded"
+                className="mt-2 bg-accent text-neutral-content font-bold py-2 px-4 rounded"
             >
                 Reintentar
             </button>
@@ -32,13 +32,13 @@ const Categorias = () => {
     console.log(data)
 
     return (
-        <div className="w-full flex items-center justify-around p-10 ">
-            <ul className="w-11/12 max-w-6xl h-full grid gap-10  md:grid-cols-2 lg:grid-cols-4">
+        <div className="flex items-center justify-center p-10">
+            <ul className="w-11/12 max-w-6xl grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {data?.map((categoria) => (
-                    <div className="text-neutral bg-neutral-content rounded-md transition-colors duration-300 hover:bg-base-300 hover:text-accent-content w-[15rem] h-[7rem]">
-                        <Link key={categoria.id} to={`/productos/categoria/${categoria.id}`}
+                    <div key={categoria.id} className="text-neutral bg-neutral-content rounded-md transition-colors duration-300 hover:bg-base-300 hover:text-accent-content w-[15rem] h-[7rem] flex items-center justify-center shadow-md">
+                        <Link  to={`/productos/categoria/${categoria.id}`}
                             className=" shadow-md w-full h-full flex items-center justify-center ">
-                            <li className="text-center p-4 flex items-center justify-center ">
+                            <li className="text-center p-4 ">
                                 <span className="text-2xl font-bold font-sans">
                                     {categoria.nombreCategoria}
                                 </span>

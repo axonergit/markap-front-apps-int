@@ -67,7 +67,7 @@ export default function VisitadosRecientemente() {
           <p>Error cargando productos visitados recientemente</p>
           <button 
               onClick={() => refetch()}
-              className="mt-2 bg-blue-500 hover:bg-blue-700 text-neutral-content font-bold py-2 px-4 rounded"
+              className="mt-2 bg-accent text-neutral-content font-bold py-2 px-4 rounded"
           >
               Reintentar
           </button>

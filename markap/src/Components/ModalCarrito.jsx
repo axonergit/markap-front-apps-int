@@ -2,7 +2,7 @@ const ModalCarrito = ({visible, cerado, mensaje}) => {
     if (!visible) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center text-neutral">
             <div className="bg-neutral-content dark:bg-gray-800 p-8 rounded-lg shhadow-lg w-1/3 max-w-md">
                 <h2 className="text-lg font-semibold mb-4">{mensaje}</h2>
                 <div className="flex justify-end">
