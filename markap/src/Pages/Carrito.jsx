@@ -50,11 +50,15 @@ const Carrito = () => {
             setLoading(false);
         } catch (error) {
             if(error.response.status === 404) {
-                setError('Carrito vacio.');
+                setModalMensaje('Carrito vacio');
+                setModalVisible(true);
                 setLoading(false);
+                setError(error);
             } else {
-                setError('Ocurrio un error, intentelo mas tarde');
+                setModalMensaje('Ocurrio un error, intentelo mas tarde');
+                setModalVisible(true);
                 setLoading(false);
+                setError(error);
             }
 
         }
@@ -128,10 +132,6 @@ const Carrito = () => {
         }
     }
 
-    if (loading) {
-        return <div className="flex justify-center items-center h-screen">Cargando...</div>;
-    }
-
     if (error) {
         return (
             <div className="flex justify-center items-center h-screen">
@@ -148,6 +148,8 @@ const Carrito = () => {
             </div>
         );
     }
+
+
 
     return (
         <>
