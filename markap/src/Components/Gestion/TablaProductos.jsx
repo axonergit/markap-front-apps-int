@@ -1,6 +1,7 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axiosClient from "../../config/axiosClient.js";
 import ModificarProducto from "./ModificarProducto.jsx";
+import VerImagenProducto from "./VerImagenProducto.jsx";
 import { Button, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, Card, CardBody, CardHeader, CardFooter } from "@nextui-org/react";
 import CrearProducto from "./CrearProducto.jsx";
 import { toast } from "react-hot-toast";
@@ -13,17 +14,22 @@ const TablaProductos = () => {
         queryFn: () => axiosClient.get("/productos").then((res) => res.data),
     });
 
+    const eliminarProductoMutation = useMutation({
+        mutationFn: (id) => axiosClient.delete(`/productos/${id}`),
+        onSuccess: () => {
+            queryClient.invalidateQueries(['Productos']);
+            toast.success('Producto eliminado exitosamente');
+        },
+        onError: (error) => {
+            console.error("Error al eliminar el producto:", error);
+            toast.error("Error al eliminar el producto. Intente nuevamente.");
+        },
+        retry: 3, // Retry up to 3 times
+    });
 
     const EliminarProducto = async (id) => {
         if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
-            try {
-                await axiosClient.delete(`/productos/${id}`);
-                queryClient.invalidateQueries(['Productos']);
-                toast.success('Producto eliminado exitosamente');
-            } catch (error) {
-                console.error("Error al eliminar el producto:", error);
-                toast.error("Error al eliminar el producto");
-            }
+            eliminarProductoMutation.mutate(id);
         }
     }
 
@@ -31,7 +37,7 @@ const TablaProductos = () => {
     if (error) return <div className="text-red-500">Error cargando productos: {error.message}</div>;
 
     return (
-        <Card className="w-full px-8 relative z-0">
+        <Card className="w-full px-8 relative z-0 bg-base-100">
             <CardHeader className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold">Productos</h1>
                 <CrearProducto />
@@ -58,6 +64,7 @@ const TablaProductos = () => {
                                 <TableCell>{producto.stock}</TableCell>
                                 <TableCell>
                                     <div className="flex gap-2">
+                                        <VerImagenProducto producto={producto} />
                                         <ModificarProducto
                                             producto={producto}
                                             onClose={() => queryClient.invalidateQueries(['Productos'])}
