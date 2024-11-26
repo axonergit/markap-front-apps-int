@@ -44,7 +44,7 @@ const MyNavbar = () => {
                     }
                 };
                 loadCarritoData();
-            }, 1000 * 5);
+            }, 10 * 5);
             return () => clearInterval(intervalId);
         }
     }, [token]);
