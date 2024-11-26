@@ -62,7 +62,7 @@ export default function VisitadosRecientemente() {
           <span className="loading loading-ball loading-lg"></span>
       </div>);
 
-    if (error) return (
+    if (error && isAuthenticated) return (
       <div className="text-red-500 text-center mt-2">
           <p>Error cargando productos visitados recientemente</p>
           <button 
@@ -73,11 +73,6 @@ export default function VisitadosRecientemente() {
           </button>
       </div>
   );
-
-
-
-  console.log(data)
-
 
     return (
 <div className= "h-full flex justify-center items-center text-neutral">

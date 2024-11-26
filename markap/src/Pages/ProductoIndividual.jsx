@@ -48,7 +48,7 @@ const ProductoIndividual = () => {
         <>
             <MyNavbar />
             <div
-                className="flex flex-row text-base-content h-screen"
+                className="flex flex-row text-base-content"
                 style={{
                     paddingTop: "2rem",
                     paddingLeft: "12rem",
@@ -57,17 +57,27 @@ const ProductoIndividual = () => {
             >
                 {(() => {
                     if (error) {
-                        return <p>No existe tal producto</p>;
+                        return (<div
+                            style={{
+                                textAlign: "center",
+                                margin: "auto",
+                                paddingRight: "12rem",
+                            }}
+                        >
+                            <p style={{fontSize: "1.5rem"}}>
+                                Producto No existe.
+                            </p>
+                        </div>)
                     }
 
                     if (isLoading) {
-                        return <Spinner />;
+                        return <Spinner/>;
                     }
 
                     if (ProductoResponse) {
                         return (
                             <>
-                                <ProductoImage productoJson={ProductoResponse} />
+                                <ProductoImage productoJson={ProductoResponse}/>
                                 <div
                                     style={{
                                         display: "flex",

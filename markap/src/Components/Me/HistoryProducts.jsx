@@ -14,7 +14,7 @@ export default function HistoryProducts() {
     });
 
 
-    console.log(comprasHistorial)
+    if(error) return <></>;
 
     return (
         <div style={{ position: "relative" }}>
