@@ -47,56 +47,90 @@ const ProductoIndividual = () => {
     return (
         <>
             <MyNavbar />
-            <div className="flex flex-row text-base-content h-screen" style={{
-                paddingTop: "2rem",
-                paddingLeft: "12rem",
-                gap: "2rem",
-            }}>
-                {error && "No existe tal producto"}
-                {isLoading && <Spinner/>}
-                {ProductoResponse && (
-                    <>
-                    <ProductoImage productoJson={ProductoResponse} />
-                    <div style={{ display: "flex",
-                        flexGrow: "1",
-                        flexDirection: "column",
-                        gap: "2vh",
-                         }}>
-                        <ProductoInfo productoJson={ProductoResponse} />
-                        {ProductoResponse.stock ? (
+            <div
+                className="flex flex-row text-base-content"
+                style={{
+                    paddingTop: "2rem",
+                    paddingLeft: "12rem",
+                    gap: "2rem",
+                }}
+            >
+                {(() => {
+                    if (error) {
+                        return (<div
+                            style={{
+                                textAlign: "center",
+                                margin: "auto",
+                                paddingRight: "12rem",
+                            }}
+                        >
+                            <p style={{fontSize: "1.5rem"}}>
+                                Producto No existe.
+                            </p>
+                        </div>)
+                    }
+
+                    if (isLoading) {
+                        return <Spinner/>;
+                    }
+
+                    if (ProductoResponse) {
+                        return (
                             <>
-                                <ProductoCantidad
-                                    productoJson={ProductoResponse}
-                                    cantidad={cantidad}
-                                    cantidadQuery={cantidadActual}
-                                    setCantidad={setCantidad}
-                                />
-                                <div className="flex flex-row" style={{
-                                    alignItems: "center",
-                                    gap: ".5rem",
-                                    marginLeft: "6vh"
-                                }}>
-                                    <ProductoAgregarCarrito
-                                        productoJson={ProductoResponse}
-                                        cantidad={cantidad}
-                                        setCantidad={setCantidad}
-                                    />
-                                    <ProductoAgregarLike productoJson={ProductoResponse} />
+                                <ProductoImage productoJson={ProductoResponse}/>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexGrow: "1",
+                                        flexDirection: "column",
+                                        gap: "2vh",
+                                    }}
+                                >
+                                    <ProductoInfo productoJson={ProductoResponse} />
+                                    {ProductoResponse.stock ? (
+                                        <>
+                                            <ProductoCantidad
+                                                productoJson={ProductoResponse}
+                                                cantidad={cantidad}
+                                                cantidadQuery={cantidadActual}
+                                                setCantidad={setCantidad}
+                                            />
+                                            <div
+                                                className="flex flex-row"
+                                                style={{
+                                                    alignItems: "center",
+                                                    gap: ".5rem",
+                                                    marginLeft: "6vh",
+                                                }}
+                                            >
+                                                <ProductoAgregarCarrito
+                                                    productoJson={ProductoResponse}
+                                                    cantidad={cantidad}
+                                                    setCantidad={setCantidad}
+                                                />
+                                                <ProductoAgregarLike
+                                                    productoJson={ProductoResponse}
+                                                />
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                                paddingTop: "1rem",
+                                                paddingLeft: "4rem",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            <p>NO HAY STOCK</p>
+                                        </div>
+                                    )}
                                 </div>
                             </>
-                        ) : (
-                            <div style={{
-                                display: "flex",
-                                alignItems: "center",
-                                paddingTop: "1rem",
-                                paddingLeft: "4rem",
-                                fontWeight: "bold",
-                            }}>
-                                <p>NO HAY STOCK</p>
-                            </div>
-                        )}
-                    </div>
-                    </>)}
+                        );
+                    }
+                })()}
             </div>
         </>
     );

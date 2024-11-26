@@ -152,7 +152,7 @@ const Carrito = () => {
     return (
         <>
             <Navbar />
-            <div className="container mx-auto p-4">
+            <div className="container mx-auto p-4 h-screen">
                 <h1 className="text-2xl font-bold mb-4">Carrito de compras</h1>
                 {loading ? (
                     <div>Cargando...</div>
@@ -220,7 +220,7 @@ export const fetchCarritoData = async () => {
 
         return { cantidadItems, subtotal };
     } catch (error) {
-        console.error('Error capturando items del carrito:', error);
+        if(error.code === "ERR_NETWORK") throw error;
         return { cantidadItems: 0, subtotal: 0.0 };
     }
 };

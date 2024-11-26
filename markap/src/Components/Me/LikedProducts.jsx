@@ -14,7 +14,7 @@ export default function LikedProducts() {
     });
 
     // if (isLoading) return <span> Cargando Articulos Likeados... </span> ;
-    // if (error) return <span> Error cargando Articulos Likeados </span> ;
+    if (error) return <></>;
 
     return (
         <div className="liked-products text-neutral" style={{ position: "sticky" }}>

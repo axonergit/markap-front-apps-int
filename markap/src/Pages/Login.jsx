@@ -40,7 +40,7 @@ const Login = () => {
     return (
         <>
         <MyNavbar></MyNavbar>
-        <div className="p-[8rem] flex items-center justify-center to-black p-4 h-screen">
+        <div className="p-[8rem] flex items-center justify-center to-black p-4">
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col w-full max-w-lg bg-neutral-content/90 p-10 rounded-3xl shadow-2xl backdrop-blur-lg gap-8 transition-transform transform hover:scale-105 text-neutral"
